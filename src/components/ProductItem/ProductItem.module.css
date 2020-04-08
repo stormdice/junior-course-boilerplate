@@ -1,0 +1,79 @@
+.goods {
+  color: #323c48;
+  text-decoration: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 224px;
+}
+
+.goodsNone {
+  color: #7e8fa4;
+  background: linear-gradient(#8f8f8f 200px, #ffffff 200px);
+}
+
+.goodsType {
+  color: #41ce7f;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  border-bottom-right-radius: 15px;
+  z-index: 1;
+  padding-top: 15px;
+  padding-right: 11px;
+  padding-bottom: 15px;
+  padding-left: 12px;
+}
+
+.goodsTypeNone {
+  background-color: #f5f6fa;
+  color: #7e8fa4;
+}
+
+.goodsImg {
+  box-shadow: 0 4px 8px 0 rgba(50, 60, 72, 0.1);
+}
+
+.goodsImgNone {
+  opacity: 0.5;
+}
+
+.goodsName {
+  margin-top: 15px;
+  margin-bottom: 8px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.goodsPrise {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  font-weight: 900;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.goodsSubPrice {
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.goodsPriceUnit {
+  margin-left: 5px;
+  font-weight: 600;
+}
+
+.goodsRating {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 1px;
+  padding-left: 1px;
+}
