@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Title.module.css';
 
-function Title() {
+const Title = () => {
   return <h1 className={style.title}>Список товаров</h1>
 };
 

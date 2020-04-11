@@ -8,3 +8,17 @@
   padding-left: 0;
   list-style: none;
 }
+
+.star {
+  display: inline-block;
+  vertical-align: middle;
+  width: 14px;
+  height: 13px;
+  margin-right: 10px;
+  background-image: url("./img/star-empty.svg");
+  background-repeat: no-repeat;
+}
+
+.starFill {
+  background-image: url("./img/star-filled.svg");
+}

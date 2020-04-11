@@ -4,7 +4,7 @@ import ProductsList from '../ProductsList/ProductsList';
 import style from './App.module.css';
 import data from '../../products.json';
 
-function App() {
+const App = () => {
   return (
     <div className={style.container}>
       <Title />
