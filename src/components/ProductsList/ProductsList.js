@@ -2,14 +2,14 @@ import React from 'react';
 import ProductItem from 'csssr-school-product-card';
 import cn from 'classnames';
 import style from './ProductsList.module.css';
-import ProductPrice from '../ProductPrice/ProductPrice';
+import ProductPrice from '../ProductPrice';
 
 const renderPrice = (price, isSubPrice = false) => {
   return price ? <ProductPrice price={price} isSubPrice={isSubPrice} /> : '';
 }
 
 const ratingComponent = ({ isFilled }) => {
-  return <div className={cn([style.star], {[style.starFill]: isFilled})} />;
+  return <div className={cn(style.star, isFilled && style.starFill)} />;
 };
 
 const ProductsList = ({ products }) => {

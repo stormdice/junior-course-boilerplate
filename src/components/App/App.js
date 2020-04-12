@@ -1,6 +1,6 @@
 import React from 'react';
-import Title from '../Title/Title';
-import ProductsList from '../ProductsList/ProductsList';
+import Title from '../Title';
+import ProductsList from '../ProductsList';
 import style from './App.module.css';
 import data from '../../products.json';
 
