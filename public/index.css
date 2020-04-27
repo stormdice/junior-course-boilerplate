@@ -1,3 +1,9 @@
+:root {
+  --midnightblue-hover-saturation: 66%;
+  --midnightblue-disabled-lightness: 66%;
+  --transition-time: 0.2s;
+}
+
 @font-face {
   font-family: "Open Sans";
   font-style: normal;
