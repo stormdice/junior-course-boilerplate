@@ -1,0 +1,87 @@
+.filter {
+  width: 100%;
+  max-width: 256px;
+  padding-top: 104px;
+}
+
+.filterApply {
+  width: 100%;
+  padding: 9px;
+
+  font: inherit;
+  font-size: 14px;
+  line-height: 14px;
+  color: #ffffff;
+  text-align: center;
+
+  background-color: hsl(213, 18%, 24%);
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--transition-time);
+}
+
+.filterApply:hover,
+.filterApply:focus {
+  background-color: hsl(213, var(--midnightblue-hover-saturation), 24%);
+  transition: background-color var(--transition-time);
+}
+
+.filterApply:active {
+  background-color: hsl(213, 18%, 24%);
+}
+
+.filterApply:disabled {
+  background-color: hsl(213, 18%, var(--midnightblue-disabled-lightness));
+}
+
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.filterTitle {
+  margin-bottom: 16px;
+  padding-right: 0;
+  padding-left: 0;
+
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.fieldContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(50% - 8px);
+}
+
+.fieldLabel {
+  cursor: pointer;
+}
+
+.fieldInput {
+  width: 100%;
+  max-width: 91px;
+  padding: 5px 16px;
+  box-sizing: border-box;
+
+  font: inherit;
+  font-size: 14px;
+  line-height: 14px;
+
+  border: 1px solid hsl(213, 17%, 57%);
+}
+
+.fieldInput::placeholder {
+  color: hsl(213, 17%, 57%);
+}
