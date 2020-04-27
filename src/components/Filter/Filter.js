@@ -1,3 +1,4 @@
+import toInt from 'csssr-school-utils/lib/toInt';
 import React from 'react';
 import LogRender from '../LogRender';
 import style from './Filter.module.css';
@@ -9,6 +10,10 @@ class Filter extends LogRender {
     this.from = React.createRef();
     this.before = React.createRef();
   }
+
+  onChange = event => {
+    event.target.value = toInt(event.target.value);
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -35,12 +40,13 @@ class Filter extends LogRender {
               </label>
               <input
                 className={style.fieldInput}
-                type="text"
+                type="number"
                 name="from"
                 id="from"
                 placeholder="1000"
                 ref={this.from}
                 defaultValue={this.props.from}
+                onChange={this.onChange}
                 required
               />
             </div>
@@ -50,12 +56,13 @@ class Filter extends LogRender {
               </label>
               <input
                 className={style.fieldInput}
-                type="text"
+                type="number"
                 name="before"
                 id="before"
                 placeholder="40000"
                 ref={this.before}
                 defaultValue={this.props.before}
+                onChange={this.onChange}
                 required
               />
             </div>
