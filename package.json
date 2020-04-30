@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "classnames": "2.2.6",
+    "csssr-school-input-discount": "git+ssh://git@github.com/CSSSR-School/junior-course-input-discount.git",
     "csssr-school-product-card": "git+ssh://git@github.com/CSSSR-School/junior-course-product-card.git",
     "csssr-school-utils": "git+ssh://git@github.com/d-batmanov/junior-course-utils.git",
     "react": "^16.12.0",

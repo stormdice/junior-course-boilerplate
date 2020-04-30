@@ -1,7 +1,7 @@
 .filter {
-  width: 100%;
-  max-width: 256px;
+  width: 256px;
   padding-top: 104px;
+  padding-right: 48px;
 }
 
 .filterApply {
@@ -37,7 +37,10 @@
 
 .fieldset {
   margin: 0;
-  padding: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 23px;
+  padding-left: 0;
   border: none;
 }
 
@@ -55,33 +58,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 23px;
+}
+
+.fieldContainer .field {
+  width: calc(50% - 8px);
 }
 
 .field {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: calc(50% - 8px);
+  width: 100%;
 }
 
 .fieldLabel {
+  margin-right: 12px;
   cursor: pointer;
-}
-
-.fieldInput {
-  width: 100%;
-  max-width: 91px;
-  padding: 5px 16px;
-  box-sizing: border-box;
-
-  font: inherit;
-  font-size: 14px;
-  line-height: 14px;
-
-  border: 1px solid hsl(213, 17%, 57%);
-}
-
-.fieldInput::placeholder {
-  color: hsl(213, 17%, 57%);
 }

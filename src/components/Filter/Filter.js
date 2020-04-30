@@ -1,76 +1,58 @@
-import toInt from 'csssr-school-utils/lib/toInt';
 import React from 'react';
+import DiscountForm from '../DiscountForm';
+import InputNumber from '../InputNumber';
 import LogRender from '../LogRender';
-import style from './Filter.module.css';
+import withInput from '../withInput';
+import s from './Filter.module.css';
+
+const InputHocced = withInput(InputNumber);
 
 class Filter extends LogRender {
-  constructor(props) {
-    super(props);
-
-    this.from = React.createRef();
-    this.before = React.createRef();
-  }
-
-  onChange = event => {
-    event.target.value = toInt(event.target.value);
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const from = Number(this.from.current.value);
-    const before = Number(this.before.current.value);
-
-    if (Number.isNaN(from) || Number.isNaN(before) || from < 0) {
-      this.props.getPrice(null, null);
-    } else {
-      this.props.getPrice(from, before);
-    }
-  };
-
   render() {
+    const {
+      from,
+      before,
+      discount,
+      handleFromChange,
+      handleBeforeChange,
+      handleDiscountChange
+    } = this.props;
+
     return (
-      <form className={style.filter} onSubmit={this.handleSubmit}>
-        <fieldset className={style.fieldset}>
-          <legend className={style.filterTitle}>Цена</legend>
-          <div className={style.fieldContainer}>
-            <div className={style.field}>
-              <label className={style.fieldLabel} htmlFor="from">
+      <form className={s.filter}>
+        <fieldset className={s.fieldset}>
+          <legend className={s.filterTitle}>Цена</legend>
+          <div className={s.fieldContainer}>
+            <div className={s.field}>
+              <label className={s.fieldLabel} htmlFor="from">
                 от
               </label>
-              <input
-                className={style.fieldInput}
-                type="number"
-                name="from"
-                id="from"
-                placeholder="1000"
-                ref={this.from}
-                defaultValue={this.props.from}
-                onChange={this.onChange}
-                required
+              <InputNumber
+                name={'from'}
+                placeholder={'1000'}
+                value={from}
+                onInputChange={handleFromChange}
               />
             </div>
-            <div className={style.field}>
-              <label className={style.fieldLabel} htmlFor="before">
+            <div className={s.field}>
+              <label className={s.fieldLabel} htmlFor="before">
                 до
               </label>
-              <input
-                className={style.fieldInput}
-                type="number"
-                name="before"
-                id="before"
-                placeholder="40000"
-                ref={this.before}
-                defaultValue={this.props.before}
-                onChange={this.onChange}
-                required
+              <InputNumber
+                name={'before'}
+                placeholder={'40000'}
+                value={before}
+                onInputChange={handleBeforeChange}
               />
             </div>
           </div>
-          <button className={style.filterApply} type="submit">
-            Применить
-          </button>
         </fieldset>
+        <DiscountForm
+          title={'Скидка'}
+          name={'discount'}
+          value={discount}
+          onInputChange={handleDiscountChange}
+        />
       </form>
     );
   }

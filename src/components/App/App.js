@@ -3,7 +3,7 @@ import data from '../../products.json';
 import Filter from '../Filter';
 import LogRender from '../LogRender';
 import Products from '../Products';
-import style from './App.module.css';
+import s from './App.module.css';
 
 const { products, price } = data;
 
@@ -13,25 +13,39 @@ class App extends LogRender {
 
     this.state = {
       from: price.min,
-      before: price.max
+      before: price.max,
+      discount: Number(price.discount)
     };
   }
 
-  getPrice = (from, before) => {
-    this.setState({
-      from,
-      before
-    });
+  handleFromChange = from => {
+    this.setState({ from });
   };
 
-  getProductsByFilter(products, from, before) {
-    if (from === null && before === null) {
+  handleBeforeChange = before => {
+    this.setState({ before });
+  };
+
+  handleDiscountChange = discount => {
+    this.setState({ discount });
+  };
+
+  getProductsByFilter(products, from, before, discountPercent) {
+    if (from > before) {
       return products;
     }
 
     return products
       .filter(product => {
-        const price = +product.price;
+        const price = Number(product.price);
+
+        if (discountPercent !== 0) {
+          const discount = Number(product.discount);
+
+          return (
+            price >= from && price <= before && discount === discountPercent
+          );
+        }
 
         return price >= from && price <= before;
       })
@@ -39,12 +53,21 @@ class App extends LogRender {
   }
 
   render() {
-    const { from, before } = this.state;
+    const { from, before, discount } = this.state;
 
     return (
-      <div className={style.container}>
-        <Filter from={from} before={before} getPrice={this.getPrice} />
-        <Products products={this.getProductsByFilter(products, from, before)} />
+      <div className={s.container}>
+        <Filter
+          from={from}
+          before={before}
+          discount={discount}
+          handleFromChange={this.handleFromChange}
+          handleBeforeChange={this.handleBeforeChange}
+          handleDiscountChange={this.handleDiscountChange}
+        />
+        <Products
+          products={this.getProductsByFilter(products, from, before, discount)}
+        />
       </div>
     );
   }

@@ -1,7 +1,8 @@
 {
   "price": {
-    "min": "5000",
-    "max": "40000"
+    "min": "1000",
+    "max": "40000",
+    "discount": "0"
   },
   "products": [
     {
@@ -30,7 +31,8 @@
       "rating": 4,
       "maxRating": 5,
       "price": "20000",
-      "subPriceContent": "23000"
+      "subPriceContent": "15000",
+      "discount": "25"
     },
     {
       "id": 4,
@@ -40,7 +42,8 @@
       "rating": 4,
       "maxRating": 5,
       "price": "30000",
-      "subPriceContent": "23000"
+      "subPriceContent": "15000",
+      "discount": "50"
     },
     {
       "id": 5,
@@ -58,7 +61,9 @@
       "isInStock": false,
       "rating": 4,
       "maxRating": 5,
-      "price": "40000"
+      "price": "40000",
+      "subPriceContent": "20000",
+      "discount": "50"
     }
   ]
 }
