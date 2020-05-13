@@ -3,8 +3,8 @@ import React from 'react';
 import s from './InputNumber.module.css';
 
 class InputNumber extends React.Component {
-  handleChange = event => {
-    const value = toInt(event.target.value);
+  handleChange = ({ target }) => {
+    const value = toInt(target.value);
 
     this.props.onInputChange(value);
   };

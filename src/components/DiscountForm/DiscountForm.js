@@ -3,8 +3,8 @@ import toInt from 'csssr-school-utils/lib/toInt';
 import React from 'react';
 
 class DiscountForm extends React.Component {
-  handleChange = event => {
-    const value = event.target.value;
+  handleChange = ({ target }) => {
+    const value = target.value;
 
     if (value.length > 2) {
       return value;

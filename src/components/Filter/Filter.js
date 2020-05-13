@@ -13,9 +13,9 @@ class Filter extends LogRender {
       from,
       before,
       discount,
-      handleFromChange,
-      handleBeforeChange,
-      handleDiscountChange
+      onFromChange,
+      onBeforeChange,
+      onDiscountChange
     } = this.props;
 
     return (
@@ -31,7 +31,7 @@ class Filter extends LogRender {
                 name={'from'}
                 placeholder={'1000'}
                 value={from}
-                onInputChange={handleFromChange}
+                onInputChange={onFromChange}
               />
             </div>
             <div className={s.field}>
@@ -42,7 +42,7 @@ class Filter extends LogRender {
                 name={'before'}
                 placeholder={'40000'}
                 value={before}
-                onInputChange={handleBeforeChange}
+                onInputChange={onBeforeChange}
               />
             </div>
           </div>
@@ -51,7 +51,7 @@ class Filter extends LogRender {
           title={'Скидка'}
           name={'discount'}
           value={discount}
-          onInputChange={handleDiscountChange}
+          onInputChange={onDiscountChange}
         />
       </form>
     );

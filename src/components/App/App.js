@@ -1,11 +1,9 @@
 import React from 'react';
-import data from '../../products.json';
+import { products, price } from '../../products.json';
 import Filter from '../Filter';
 import LogRender from '../LogRender';
 import Products from '../Products';
 import s from './App.module.css';
-
-const { products, price } = data;
 
 class App extends LogRender {
   constructor(props) {
@@ -18,19 +16,13 @@ class App extends LogRender {
     };
   }
 
-  handleFromChange = from => {
-    this.setState({ from });
+  getChangeHandlerFor = fieldName => {
+    return fieldValue => {
+      this.setState({ [fieldName]: fieldValue });
+    };
   };
 
-  handleBeforeChange = before => {
-    this.setState({ before });
-  };
-
-  handleDiscountChange = discount => {
-    this.setState({ discount });
-  };
-
-  getProductsByFilter(products, from, before, discountPercent) {
+  getFilteredProducts(products, from, before, discountPercent) {
     if (from > before) {
       return products;
     }
@@ -61,12 +53,12 @@ class App extends LogRender {
           from={from}
           before={before}
           discount={discount}
-          handleFromChange={this.handleFromChange}
-          handleBeforeChange={this.handleBeforeChange}
-          handleDiscountChange={this.handleDiscountChange}
+          onFromChange={this.getChangeHandlerFor('from')}
+          onBeforeChange={this.getChangeHandlerFor('before')}
+          onDiscountChange={this.getChangeHandlerFor('discount')}
         />
         <Products
-          products={this.getProductsByFilter(products, from, before, discount)}
+          products={this.getFilteredProducts(products, from, before, discount)}
         />
       </div>
     );
