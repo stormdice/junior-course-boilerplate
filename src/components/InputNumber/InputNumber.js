@@ -10,7 +10,7 @@ class InputNumber extends React.Component {
   };
 
   render() {
-    const { name, placeholder, value, maxLength } = this.props;
+    const { name, placeholder, value } = this.props;
 
     return (
       <input
@@ -20,7 +20,6 @@ class InputNumber extends React.Component {
         name={name}
         placeholder={placeholder}
         value={value}
-        maxLength={maxLength}
         onChange={this.handleChange}
         required
       />
