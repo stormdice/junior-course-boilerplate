@@ -1,11 +1,7 @@
 import React from 'react';
-import DiscountForm from '../DiscountForm';
-import InputNumber from '../InputNumber';
 import LogRender from '../LogRender';
-import withInput from '../withInput';
+import { InputBefore, InputFrom, InputDiscount } from '../input-components';
 import s from './Filter.module.css';
-
-const InputHocced = withInput(InputNumber);
 
 class Filter extends LogRender {
   render() {
@@ -27,7 +23,7 @@ class Filter extends LogRender {
               <label className={s.fieldLabel} htmlFor="from">
                 от
               </label>
-              <InputNumber
+              <InputFrom
                 name={'from'}
                 placeholder={'1000'}
                 value={from}
@@ -38,7 +34,7 @@ class Filter extends LogRender {
               <label className={s.fieldLabel} htmlFor="before">
                 до
               </label>
-              <InputNumber
+              <InputBefore
                 name={'before'}
                 placeholder={'40000'}
                 value={before}
@@ -47,7 +43,7 @@ class Filter extends LogRender {
             </div>
           </div>
         </fieldset>
-        <DiscountForm
+        <InputDiscount
           title={'Скидка'}
           name={'discount'}
           value={discount}

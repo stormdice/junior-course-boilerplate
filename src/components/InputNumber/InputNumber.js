@@ -1,16 +1,9 @@
-import toInt from 'csssr-school-utils/lib/toInt';
 import React from 'react';
 import s from './InputNumber.module.css';
 
 class InputNumber extends React.Component {
-  handleChange = ({ target }) => {
-    const value = toInt(target.value);
-
-    this.props.onInputChange(value);
-  };
-
   render() {
-    const { name, placeholder, value } = this.props;
+    const { name, placeholder, value, priceHandleChange } = this.props;
 
     return (
       <input
@@ -20,7 +13,7 @@ class InputNumber extends React.Component {
         name={name}
         placeholder={placeholder}
         value={value}
-        onChange={this.handleChange}
+        onChange={priceHandleChange}
         required
       />
     );
