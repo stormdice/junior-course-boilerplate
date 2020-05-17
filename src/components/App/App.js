@@ -3,17 +3,22 @@ import { products, price } from '../../products.json';
 import Filter from '../Filter';
 import LogRender from '../LogRender';
 import Products from '../Products';
+import { minBy, maxBy } from 'csssr-school-utils';
 import s from './App.module.css';
+
+const minPrice = minBy(product => product.price, products).price;
+const maxPrice = maxBy(product => product.price, products).price;
 
 class App extends LogRender {
   constructor(props) {
     super(props);
 
     this.state = {
-      from: price.min,
-      before: price.max,
-      discount: Number(price.discount)
+      from: minPrice,
+      before: maxPrice,
+      discount: price.discount
     };
+    console.log();
   }
 
   getChangeHandlerFor = fieldName => {
@@ -29,10 +34,10 @@ class App extends LogRender {
 
     return products
       .filter(product => {
-        const price = Number(product.price);
+        const price = product.price;
 
         if (discountPercent !== 0) {
-          const discount = Number(product.discount);
+          const discount = product.discount;
 
           return (
             price >= from && price <= before && discount === discountPercent
