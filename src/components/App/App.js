@@ -18,7 +18,6 @@ class App extends LogRender {
       before: maxPrice,
       discount: price.discount
     };
-    console.log();
   }
 
   getChangeHandlerFor = fieldName => {
@@ -28,10 +27,6 @@ class App extends LogRender {
   };
 
   getFilteredProducts(products, from, before, discountPercent) {
-    if (from > before) {
-      return products;
-    }
-
     return products
       .filter(product => {
         const price = product.price;
@@ -58,9 +53,7 @@ class App extends LogRender {
           from={from}
           before={before}
           discount={discount}
-          onFromChange={this.getChangeHandlerFor('from')}
-          onBeforeChange={this.getChangeHandlerFor('before')}
-          onDiscountChange={this.getChangeHandlerFor('discount')}
+          handleChange={this.getChangeHandlerFor}
         />
         <Products
           products={this.getFilteredProducts(products, from, before, discount)}

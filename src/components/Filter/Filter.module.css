@@ -44,11 +44,16 @@
   border: none;
 }
 
+.fieldset:last-child {
+  padding-bottom: 0;
+}
+
 .filterTitle {
   margin-bottom: 16px;
   padding-right: 0;
   padding-left: 0;
 
+  font-family: "OpenSans", sans-serif;
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
@@ -69,9 +74,9 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  cursor: pointer;
 }
 
-.fieldLabel {
+.fieldText {
   margin-right: 12px;
-  cursor: pointer;
 }
