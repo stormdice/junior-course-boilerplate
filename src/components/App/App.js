@@ -13,8 +13,8 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      from: minPrice,
-      before: maxPrice,
+      min: minPrice,
+      max: maxPrice,
       discount: price.discount
     };
   }
@@ -25,7 +25,7 @@ export default class App extends Component {
     };
   };
 
-  getFilteredProducts(products, from, before, discountPercent) {
+  getFilteredProducts(products, min, max, discountPercent) {
     return products
       .filter(product => {
         const price = product.price;
@@ -33,29 +33,27 @@ export default class App extends Component {
         if (discountPercent !== 0) {
           const discount = product.discount;
 
-          return (
-            price >= from && price <= before && discount === discountPercent
-          );
+          return price >= min && price <= max && discount === discountPercent;
         }
 
-        return price >= from && price <= before;
+        return price >= min && price <= max;
       })
       .sort((a, b) => a.price - b.price);
   }
 
   render() {
-    const { from, before, discount } = this.state;
+    const { min, max, discount } = this.state;
 
     return (
       <div className={s.container}>
         <Filter
-          from={from}
-          before={before}
+          min={min}
+          max={max}
           discount={discount}
           handleChange={this.getChangeHandlerFor}
         />
         <Products
-          products={this.getFilteredProducts(products, from, before, discount)}
+          products={this.getFilteredProducts(products, min, max, discount)}
         />
       </div>
     );

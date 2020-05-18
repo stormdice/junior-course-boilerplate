@@ -5,7 +5,7 @@ import s from './Filter.module.css';
 
 export default class Filter extends LogRender {
   render() {
-    const { from, before, discount, handleChange } = this.props;
+    const { min, max, discount, handleChange } = this.props;
 
     return (
       <form className={s.filter}>
@@ -16,18 +16,18 @@ export default class Filter extends LogRender {
               <span className={s.fieldText}>от</span>
               <InputFrom
                 name="from"
-                placeholder={from}
-                value={from}
-                onInputChange={handleChange('from')}
+                placeholder={min}
+                value={min}
+                onInputChange={handleChange('min')}
               />
             </label>
             <label className={s.field}>
               <span className={s.fieldText}>до</span>
               <InputBefore
                 name="before"
-                placeholder={before}
-                value={before}
-                onInputChange={handleChange('before')}
+                placeholder={max}
+                value={max}
+                onInputChange={handleChange('max')}
               />
             </label>
           </div>
