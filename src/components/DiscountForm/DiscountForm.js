@@ -1,15 +1,18 @@
-import Discount from 'csssr-school-input-discount';
 import React from 'react';
+import LogRender from '../LogRender';
+import Discount from 'csssr-school-input-discount';
 
-const DiscountForm = ({ title, name, value, onInputChange }) => {
-  return (
-    <Discount
-      title={title}
-      name={name}
-      value={value}
-      onChange={onInputChange}
-    />
-  );
-};
+export default class DiscountForm extends LogRender {
+  render() {
+    const { title, name, value, onInputChange } = this.props;
 
-export default DiscountForm;
+    return (
+      <Discount
+        title={title}
+        name={name}
+        value={value}
+        onChange={onInputChange}
+      />
+    );
+  }
+}

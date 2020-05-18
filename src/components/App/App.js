@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { products, price } from '../../products.json';
 import Filter from '../Filter';
-import LogRender from '../LogRender';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
 import s from './App.module.css';
@@ -9,7 +8,7 @@ import s from './App.module.css';
 const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
-class App extends LogRender {
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -62,5 +61,3 @@ class App extends LogRender {
     );
   }
 }
-
-export default App;

@@ -3,7 +3,7 @@ import LogRender from '../LogRender';
 import { InputBefore, InputFrom, InputDiscount } from '../InputComponents';
 import s from './Filter.module.css';
 
-class Filter extends LogRender {
+export default class Filter extends LogRender {
   render() {
     const { from, before, discount, handleChange } = this.props;
 
@@ -47,5 +47,3 @@ class Filter extends LogRender {
     );
   }
 }
-
-export default Filter;

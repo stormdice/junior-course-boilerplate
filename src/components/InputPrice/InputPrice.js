@@ -1,18 +1,21 @@
 import React from 'react';
+import LogRender from '../LogRender';
 import s from './InputPrice.module.css';
 
-const InputPrice = ({ name, placeholder, value, onInputChange }) => {
-  return (
-    <input
-      type="text"
-      className={s.input}
-      name={name}
-      placeholder={placeholder}
-      value={value}
-      onChange={onInputChange}
-      required
-    />
-  );
-};
+export default class InputPrice extends LogRender {
+  render() {
+    const { name, placeholder, value, onInputChange } = this.props;
 
-export default InputPrice;
+    return (
+      <input
+        type="text"
+        className={s.input}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        onChange={onInputChange}
+        required
+      />
+    );
+  }
+}
