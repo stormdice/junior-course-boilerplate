@@ -5,8 +5,8 @@ import { Component } from 'react';
 class LogRender extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     logger.call(this, this.constructor.name, nextProps, nextState);
-    // return shallowCompare(this, nextProps, nextState);
-    return true;
+
+    return shallowCompare(this, nextProps, nextState);
   }
 }
 
