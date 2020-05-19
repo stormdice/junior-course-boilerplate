@@ -5,6 +5,7 @@ import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
 import s from './App.module.css';
 
+const DISCOUNT_LIMIT = 100;
 const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
@@ -17,6 +18,18 @@ export default class App extends Component {
       max: maxPrice,
       discount: price.discount
     };
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (nextState.min > this.state.max) {
+      return false;
+    }
+
+    if (nextState.discount > DISCOUNT_LIMIT) {
+      return false;
+    }
+
+    return true;
   }
 
   getChangeHandlerFor = fieldName => {
