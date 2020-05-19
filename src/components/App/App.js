@@ -20,20 +20,16 @@ export default class App extends Component {
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (nextState.min > this.state.max) {
-      return false;
-    }
-
-    if (nextState.discount > DISCOUNT_LIMIT) {
-      return false;
-    }
-
-    return true;
-  }
-
   getChangeHandlerFor = fieldName => {
     return fieldValue => {
+      if (fieldName === 'min' && fieldValue > this.state.max) {
+        return this.state.min;
+      }
+
+      if (fieldName === 'discount' && fieldValue > DISCOUNT_LIMIT) {
+        return this.state.discount;
+      }
+
       this.setState({ [fieldName]: fieldValue });
     };
   };
