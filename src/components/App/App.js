@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { products, price } from '../../products.json';
+import { products, price, labels } from '../../products.json';
 import Filter from '../Filter';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
@@ -60,6 +60,7 @@ export default class App extends Component {
           max={max}
           discount={discount}
           handleChange={this.getChangeHandlerFor}
+          categoryLabels={labels}
         />
         <Products
           products={this.getFilteredProducts(products, min, max, discount)}

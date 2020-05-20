@@ -1,11 +1,12 @@
 import React from 'react';
 import LogRender from '../LogRender';
 import { InputBefore, InputFrom, InputDiscount } from '../InputComponents';
+import CategoryList from '../CategoryList';
 import s from './Filter.module.css';
 
 export default class Filter extends LogRender {
   render() {
-    const { min, max, discount, handleChange } = this.props;
+    const { min, max, discount, handleChange, categoryLabels } = this.props;
 
     return (
       <form className={s.filter}>
@@ -42,6 +43,7 @@ export default class Filter extends LogRender {
         </fieldset>
         <fieldset className={s.fieldset}>
           <legend className={s.filterTitle}>Категории</legend>
+          <CategoryList categoryLabels={categoryLabels} />
         </fieldset>
       </form>
     );
