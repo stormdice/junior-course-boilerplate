@@ -10,15 +10,11 @@ const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      min: minPrice,
-      max: maxPrice,
-      discount: price.discount
-    };
-  }
+  state = {
+    min: minPrice,
+    max: maxPrice,
+    discount: price.discount
+  };
 
   getChangeHandlerFor = fieldName => {
     return fieldValue => {
