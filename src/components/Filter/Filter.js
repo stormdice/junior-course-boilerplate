@@ -1,79 +1,51 @@
-import toInt from 'csssr-school-utils/lib/toInt';
 import React from 'react';
 import LogRender from '../LogRender';
-import style from './Filter.module.css';
+import { InputBefore, InputFrom, InputDiscount } from '../InputComponents';
+import CategoryList from '../CategoryList';
+import s from './Filter.module.css';
 
-class Filter extends LogRender {
-  constructor(props) {
-    super(props);
-
-    this.from = React.createRef();
-    this.before = React.createRef();
-  }
-
-  onChange = event => {
-    event.target.value = toInt(event.target.value);
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-
-    const from = Number(this.from.current.value);
-    const before = Number(this.before.current.value);
-
-    if (Number.isNaN(from) || Number.isNaN(before) || from < 0) {
-      this.props.getPrice(null, null);
-    } else {
-      this.props.getPrice(from, before);
-    }
-  };
-
+export default class Filter extends LogRender {
   render() {
+    const { min, max, discount, handleChange, categoryLabels } = this.props;
+
     return (
-      <form className={style.filter} onSubmit={this.handleSubmit}>
-        <fieldset className={style.fieldset}>
-          <legend className={style.filterTitle}>Цена</legend>
-          <div className={style.fieldContainer}>
-            <div className={style.field}>
-              <label className={style.fieldLabel} htmlFor="from">
-                от
-              </label>
-              <input
-                className={style.fieldInput}
-                type="number"
+      <form className={s.filter}>
+        <fieldset className={s.fieldset}>
+          <legend className={s.filterTitle}>Цена</legend>
+          <div className={s.fieldContainer}>
+            <label className={s.field}>
+              <span className={s.fieldText}>от</span>
+              <InputFrom
                 name="from"
-                id="from"
-                placeholder="1000"
-                ref={this.from}
-                defaultValue={this.props.from}
-                onChange={this.onChange}
-                required
+                placeholder={min}
+                value={min}
+                onInputChange={handleChange('min')}
               />
-            </div>
-            <div className={style.field}>
-              <label className={style.fieldLabel} htmlFor="before">
-                до
-              </label>
-              <input
-                className={style.fieldInput}
-                type="number"
+            </label>
+            <label className={s.field}>
+              <span className={s.fieldText}>до</span>
+              <InputBefore
                 name="before"
-                id="before"
-                placeholder="40000"
-                ref={this.before}
-                defaultValue={this.props.before}
-                onChange={this.onChange}
-                required
+                placeholder={max}
+                value={max}
+                onInputChange={handleChange('max')}
               />
-            </div>
+            </label>
           </div>
-          <button className={style.filterApply} type="submit">
-            Применить
-          </button>
+        </fieldset>
+        <fieldset className={s.fieldset}>
+          <InputDiscount
+            title="Скидка"
+            name="discount"
+            value={discount}
+            onInputChange={handleChange('discount')}
+          />
+        </fieldset>
+        <fieldset className={s.fieldset}>
+          <legend className={s.filterTitle}>Категории</legend>
+          <CategoryList categoryLabels={categoryLabels} />
         </fieldset>
       </form>
     );
   }
 }
-
-export default Filter;

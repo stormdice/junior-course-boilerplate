@@ -9,7 +9,7 @@
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: local("Open Sans"), url("./fonts/open-sans-light.woff2") format("woff2"),
+  src: url("./fonts/open-sans-light.woff2") format("woff2"),
     url("./fonts/open-sans-light.woff") format("woff");
 }
 
@@ -18,8 +18,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local("Open Sans"),
-    url("./fonts/open-sans-regular.woff2") format("woff2"),
+  src: url("./fonts/open-sans-regular.woff2") format("woff2"),
     url("./fonts/open-sans-regular.woff") format("woff");
 }
 
@@ -28,8 +27,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local("Open Sans"),
-    url("./fonts/open-sans-semibold.woff2") format("woff2"),
+  src: url("./fonts/open-sans-semibold.woff2") format("woff2"),
     url("./fonts/open-sans-semibold.woff") format("woff");
 }
 

@@ -1,7 +1,6 @@
 {
   "price": {
-    "min": "5000",
-    "max": "40000"
+    "discount": 0
   },
   "products": [
     {
@@ -11,7 +10,7 @@
       "isInStock": true,
       "rating": 4,
       "maxRating": 5,
-      "price": "5000"
+      "price": 5000
     },
     {
       "id": 2,
@@ -20,7 +19,7 @@
       "isInStock": false,
       "rating": 4,
       "maxRating": 5,
-      "price": "10000"
+      "price": 10000
     },
     {
       "id": 3,
@@ -29,8 +28,9 @@
       "isInStock": true,
       "rating": 4,
       "maxRating": 5,
-      "price": "20000",
-      "subPriceContent": "23000"
+      "price": 20000,
+      "subPriceContent": 15000,
+      "discount": 25
     },
     {
       "id": 4,
@@ -39,8 +39,9 @@
       "isInStock": true,
       "rating": 4,
       "maxRating": 5,
-      "price": "30000",
-      "subPriceContent": "23000"
+      "price": 30000,
+      "subPriceContent": 15000,
+      "discount": 50
     },
     {
       "id": 5,
@@ -49,7 +50,7 @@
       "isInStock": true,
       "rating": 4,
       "maxRating": 5,
-      "price": "25000"
+      "price": 25000
     },
     {
       "id": 6,
@@ -58,7 +59,21 @@
       "isInStock": false,
       "rating": 4,
       "maxRating": 5,
-      "price": "40000"
+      "price": 40000,
+      "subPriceContent": 20000,
+      "discount": 50
+    }
+  ],
+  "labels": [
+    {
+      "id": 1,
+      "name": "clothes",
+      "title": "Clothes"
+    },
+    {
+      "id": 2,
+      "name": "books",
+      "title": "Books"
     }
   ]
 }

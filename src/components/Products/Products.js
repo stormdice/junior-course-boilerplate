@@ -1,15 +1,18 @@
 import React from 'react';
+import LogRender from '../LogRender';
 import ProductsList from '../ProductsList';
 import Title from '../Title';
-import style from './Products.module.css';
+import s from './Products.module.css';
 
-const Products = ({ products }) => {
-  return (
-    <div className={style.products}>
-      <Title />
-      <ProductsList products={products} />
-    </div>
-  );
-};
+export default class Products extends LogRender {
+  render() {
+    const { products } = this.props;
 
-export default Products;
+    return (
+      <div className={s.products}>
+        <Title />
+        <ProductsList products={products} />
+      </div>
+    );
+  }
+}

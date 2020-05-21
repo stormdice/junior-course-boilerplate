@@ -1,47 +1,49 @@
+import React from 'react';
 import cn from 'classnames';
 import ProductItem from 'csssr-school-product-card';
-import React from 'react';
+import LogRender from '../LogRender';
 import ProductPrice from '../ProductPrice';
-import style from './ProductsList.module.css';
+import s from './ProductsList.module.css';
 
 const renderPrice = (price, isSubPrice = false) => {
   return price ? <ProductPrice price={price} isSubPrice={isSubPrice} /> : '';
 };
 
 const ratingComponent = ({ isFilled }) => {
-  return <div className={cn(style.star, isFilled && style.starFill)} />;
+  return <div className={cn(s.star, isFilled && s.starFill)} />;
 };
 
-const ProductsList = ({ products }) => {
-  const renderProducts = products.map(
-    ({
-      id,
-      isInStock,
-      img,
-      title,
-      price,
-      subPriceContent,
-      maxRating,
-      rating
-    }) => {
-      return (
-        <li key={id}>
-          <ProductItem
-            isInStock={isInStock}
-            img={img}
-            title={title}
-            price={renderPrice(price)}
-            subPriceContent={renderPrice(subPriceContent, true)}
-            maxRating={maxRating}
-            rating={rating}
-            ratingComponent={ratingComponent}
-          />
-        </li>
-      );
-    }
-  );
+export default class ProductsList extends LogRender {
+  render() {
+    const { products } = this.props;
+    const renderProducts = products.map(
+      ({
+        id,
+        isInStock,
+        img,
+        title,
+        price,
+        subPriceContent,
+        maxRating,
+        rating
+      }) => {
+        return (
+          <li key={id}>
+            <ProductItem
+              isInStock={isInStock}
+              img={img}
+              title={title}
+              price={renderPrice(price)}
+              subPriceContent={renderPrice(subPriceContent, true)}
+              maxRating={maxRating}
+              rating={rating}
+              ratingComponent={ratingComponent}
+            />
+          </li>
+        );
+      }
+    );
 
-  return <ul className={style.productsList}>{renderProducts}</ul>;
-};
-
-export default ProductsList;
+    return <ul className={s.productsList}>{renderProducts}</ul>;
+  }
+}

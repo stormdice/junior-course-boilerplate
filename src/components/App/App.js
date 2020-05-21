@@ -1,53 +1,67 @@
-import React from 'react';
-import data from '../../products.json';
+import React, { Component } from 'react';
+import { products, price, labels } from '../../products.json';
 import Filter from '../Filter';
-import LogRender from '../LogRender';
 import Products from '../Products';
-import style from './App.module.css';
+import { minBy, maxBy } from 'csssr-school-utils';
+import s from './App.module.css';
 
-const { products, price } = data;
+const DISCOUNT_LIMIT = 100;
+const minPrice = minBy(product => product.price, products).price;
+const maxPrice = maxBy(product => product.price, products).price;
 
-class App extends LogRender {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      from: price.min,
-      before: price.max
-    };
-  }
-
-  getPrice = (from, before) => {
-    this.setState({
-      from,
-      before
-    });
+export default class App extends Component {
+  state = {
+    min: minPrice,
+    max: maxPrice,
+    discount: price.discount
   };
 
-  getProductsByFilter(products, from, before) {
-    if (from === null && before === null) {
-      return products;
-    }
+  getChangeHandlerFor = fieldName => {
+    return fieldValue => {
+      if (fieldName === 'min' && fieldValue > this.state.max) {
+        return this.state.min;
+      }
 
+      if (fieldName === 'discount' && fieldValue > DISCOUNT_LIMIT) {
+        return this.state.discount;
+      }
+
+      this.setState({ [fieldName]: fieldValue });
+    };
+  };
+
+  getFilteredProducts(products, min, max, discountPercent) {
     return products
       .filter(product => {
-        const price = +product.price;
+        const price = product.price;
 
-        return price >= from && price <= before;
+        if (discountPercent !== 0) {
+          const discount = product.discount;
+
+          return price >= min && price <= max && discount === discountPercent;
+        }
+
+        return price >= min && price <= max;
       })
       .sort((a, b) => a.price - b.price);
   }
 
   render() {
-    const { from, before } = this.state;
+    const { min, max, discount } = this.state;
 
     return (
-      <div className={style.container}>
-        <Filter from={from} before={before} getPrice={this.getPrice} />
-        <Products products={this.getProductsByFilter(products, from, before)} />
+      <div className={s.container}>
+        <Filter
+          min={min}
+          max={max}
+          discount={discount}
+          handleChange={this.getChangeHandlerFor}
+          categoryLabels={labels}
+        />
+        <Products
+          products={this.getFilteredProducts(products, min, max, discount)}
+        />
       </div>
     );
   }
 }
-
-export default App;
