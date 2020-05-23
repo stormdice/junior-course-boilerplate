@@ -45,6 +45,9 @@ export default class Filter extends LogRender {
           <legend className={s.filterTitle}>Категории</legend>
           <CategoryList categoryLabels={categoryLabels} />
         </fieldset>
+        <button className={s.filtersReset} type="button">
+          Сбросить фильтры
+        </button>
       </form>
     );
   }

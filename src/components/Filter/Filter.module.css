@@ -4,29 +4,6 @@
   padding-right: 48px;
 }
 
-.filterApply {
-  width: 100%;
-  padding: 9px;
-
-  font: inherit;
-  font-size: 14px;
-  line-height: 14px;
-  color: #ffffff;
-  text-align: center;
-
-  background-color: hsl(213, 18%, 24%);
-  border: none;
-  cursor: pointer;
-  user-select: none;
-  transition: background-color var(--transition-time);
-}
-
-.filterApply:hover,
-.filterApply:focus {
-  background-color: hsl(213, var(--midnightblue-hover-saturation), 24%);
-  transition: background-color var(--transition-time);
-}
-
 .filterApply:active {
   background-color: hsl(213, 18%, 24%);
 }
@@ -42,6 +19,11 @@
   padding-bottom: 23px;
   padding-left: 0;
   border: none;
+}
+
+.fieldset h3 {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .fieldset:last-child {
@@ -79,4 +61,33 @@
 
 .fieldText {
   margin-right: 12px;
+}
+
+.filtersReset {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 9px;
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 14px;
+  color: #323c48;
+
+  background-color: white;
+  border: 1px solid #323c48;
+
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.filtersReset:hover,
+.filtersReset:focus {
+  background-color: #323c48;
+  color: white;
+}
+
+.filtersReset:active {
+  opacity: 0.8;
 }
