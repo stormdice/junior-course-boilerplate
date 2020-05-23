@@ -1,0 +1,51 @@
+.PaginationList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.PaginationItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.PaginationLink {
+  display: block;
+  width: 34px;
+  margin-right: 2px;
+  padding: 7px;
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  text-align: center;
+  color: #7e8fa4;
+
+  background: #ffffff;
+  border: 1px solid #c5cfde;
+}
+
+.PaginationLinkPrev {
+  min-width: 88px;
+  margin-right: 16px;
+}
+
+.PaginationLinkNext {
+  min-width: 88px;
+  margin-left: 16px;
+}
+
+.PaginationLinkActive {
+  background-color: #5695ed;
+  color: #ffffff;
+}
+
+.PaginationPrev {
+  margin-right: 16px;
+}
