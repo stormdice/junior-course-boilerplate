@@ -1,6 +1,6 @@
 import React from 'react';
 import LogRender from '../LogRender';
-import { InputBefore, InputFrom, InputDiscount } from '../InputComponents';
+import { InputMin, InputMax, InputDiscount } from '../InputComponents';
 import CategoryList from '../CategoryList';
 import s from './Filter.module.css';
 
@@ -15,8 +15,8 @@ export default class Filter extends LogRender {
           <div className={s.fieldContainer}>
             <label className={s.field}>
               <span className={s.fieldText}>от</span>
-              <InputFrom
-                name="from"
+              <InputMin
+                name="min"
                 placeholder={min}
                 value={min}
                 onInputChange={handleChange('min')}
@@ -24,8 +24,8 @@ export default class Filter extends LogRender {
             </label>
             <label className={s.field}>
               <span className={s.fieldText}>до</span>
-              <InputBefore
-                name="before"
+              <InputMax
+                name="max"
                 placeholder={max}
                 value={max}
                 onInputChange={handleChange('max')}
