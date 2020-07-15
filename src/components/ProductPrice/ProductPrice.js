@@ -5,8 +5,8 @@ import s from './ProductPrice.module.css';
 
 const ProductPrice = ({ price, isSubPrice }) => {
   return (
-    <div className={cn([s.productPrice], { [s.subPrice]: isSubPrice })}>
-      {formatMoney(price, 0, ' ', ' ')} <span>&#x20bd;</span>
+    <div className={cn([s.price], { [s.small]: isSubPrice })}>
+      {formatMoney(price, 0, ' ', ' ')} <span className={s.unit}>&#x20bd;</span>
     </div>
   );
 };

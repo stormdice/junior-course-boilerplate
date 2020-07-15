@@ -1,4 +1,4 @@
-.PaginationList {
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,13 +8,13 @@
   list-style: none;
 }
 
-.PaginationItem {
+.item {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.PaginationLink {
+.link {
   display: block;
   width: 34px;
   margin-right: 2px;
@@ -31,21 +31,21 @@
   border: 1px solid #c5cfde;
 }
 
-.PaginationLinkPrev {
+.prev {
   min-width: 88px;
   margin-right: 16px;
 }
 
-.PaginationLinkNext {
+.next {
   min-width: 88px;
   margin-left: 16px;
 }
 
-.PaginationLinkActive {
+.active {
   background-color: #5695ed;
   color: #ffffff;
 }
 
-.PaginationPrev {
+.prev {
   margin-right: 16px;
 }

@@ -3,49 +3,49 @@ import s from './Pagination.module.css';
 
 const Pagination = () => {
   return (
-    <ul className={s.PaginationList}>
-      <li className={s.PaginationItem}>
-        <a className={`${s.PaginationLink} ${s.PaginationLinkPrev}`} href="#">
+    <ul className={s.pagination}>
+      <li className={s.item}>
+        <a className={`${s.link} ${s.prev}`} href="#">
           Назад
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={`${s.PaginationLink} ${s.PaginationLinkActive}`} href="#">
+      <li className={s.item}>
+        <a className={`${s.link} ${s.active}`} href="#">
           1
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           2
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           3
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           4
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           5
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           ...
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={s.PaginationLink} href="#">
+      <li className={s.item}>
+        <a className={s.link} href="#">
           13
         </a>
       </li>
-      <li className={s.PaginationItem}>
-        <a className={`${s.PaginationLink} ${s.PaginationLinkNext}`} href="#">
+      <li className={s.item}>
+        <a className={`${s.link} ${s.next}`} href="#">
           Вперед
         </a>
       </li>

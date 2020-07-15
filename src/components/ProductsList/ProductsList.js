@@ -10,7 +10,7 @@ const renderPrice = (price, isSubPrice = false) => {
 };
 
 const ratingComponent = ({ isFilled }) => {
-  return <div className={cn(s.star, isFilled && s.starFill)} />;
+  return <div className={cn(s.star, isFilled && s.fill)} />;
 };
 
 export default class ProductsList extends LogRender {
@@ -44,6 +44,6 @@ export default class ProductsList extends LogRender {
       }
     );
 
-    return <ul className={s.productsList}>{renderProducts}</ul>;
+    return <ul className={s.products}>{renderProducts}</ul>;
   }
 }

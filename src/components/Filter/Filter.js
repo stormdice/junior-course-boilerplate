@@ -11,10 +11,10 @@ export default class Filter extends LogRender {
     return (
       <form className={s.filter}>
         <fieldset className={s.fieldset}>
-          <legend className={s.filterTitle}>Цена</legend>
-          <div className={s.fieldContainer}>
+          <legend className={s.title}>Цена</legend>
+          <div className={s.container}>
             <label className={s.field}>
-              <span className={s.fieldText}>от</span>
+              <span className={s.label}>от</span>
               <InputMin
                 name="min"
                 placeholder={min}
@@ -23,7 +23,7 @@ export default class Filter extends LogRender {
               />
             </label>
             <label className={s.field}>
-              <span className={s.fieldText}>до</span>
+              <span className={s.label}>до</span>
               <InputMax
                 name="max"
                 placeholder={max}
@@ -42,10 +42,10 @@ export default class Filter extends LogRender {
           />
         </fieldset>
         <fieldset className={s.fieldset}>
-          <legend className={s.filterTitle}>Категории</legend>
+          <legend className={s.title}>Категории</legend>
           <CategoryList categoryLabels={categoryLabels} />
         </fieldset>
-        <button className={s.filtersReset} type="button">
+        <button className={s.reset} type="button">
           Сбросить фильтры
         </button>
       </form>

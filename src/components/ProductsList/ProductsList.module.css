@@ -1,4 +1,4 @@
-.productsList {
+.products {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 32px;
@@ -19,6 +19,6 @@
   background-repeat: no-repeat;
 }
 
-.starFill {
+.fill {
   background-image: url("./img/star-filled.svg");
 }

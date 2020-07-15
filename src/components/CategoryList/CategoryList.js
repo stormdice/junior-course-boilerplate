@@ -5,13 +5,13 @@ import CategoryLabel from '../CategoryLabel/CategoryLabel';
 const CategoryList = ({ categoryLabels }) => {
   const renderLabels = categoryLabels.map(({ id, name, title }) => {
     return (
-      <li className={s.listItem} key={id}>
+      <li className={s.category} key={id}>
         <CategoryLabel name={name} title={title} />
       </li>
     );
   });
 
-  return <ul className={s.list}>{renderLabels}</ul>;
+  return <ul className={s.categories}>{renderLabels}</ul>;
 };
 
 export default CategoryList;
