@@ -9,6 +9,26 @@ const DISCOUNT_LIMIT = 100;
 const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
+/**
+ * Проверяет валидность цен
+ * @param {number} price - цена введённая пользователем
+ * @param {number} min - минимальная цена
+ * @param {number} max - максимальаня цена
+ * @returns {boolean}
+ */
+const isPriceValid = (price, min, max) => price >= min && price <= max;
+
+/**
+ * Проверяет наличие скидки
+ * @param {number} discount
+ * @param {number} discountPercent
+ * @returns {boolean}
+ */
+const hasDiscount = (discount, discountPercent) => discount === discountPercent;
+
+const isPriceAndDiscountValid = (price, min, max, discount, discountPercent) =>
+  isPriceValid(price, min, max) && hasDiscount(discount, discountPercent);
+
 export default class App extends Component {
   state = {
     min: minPrice,
@@ -32,17 +52,11 @@ export default class App extends Component {
 
   getFilteredProducts(products, min, max, discountPercent) {
     return products
-      .filter(product => {
-        const price = product.price;
-
-        if (discountPercent !== 0) {
-          const discount = product.discount;
-
-          return price >= min && price <= max && discount === discountPercent;
-        }
-
-        return price >= min && price <= max;
-      })
+      .filter(({ price, discount }) =>
+        discountPercent > 0
+          ? isPriceAndDiscountValid(price, min, max, discount, discountPercent)
+          : isPriceValid(price, min, max)
+      )
       .sort((a, b) => a.price - b.price);
   }
 
