@@ -33,7 +33,24 @@ export default class App extends Component {
   state = {
     min: minPrice,
     max: maxPrice,
-    discount: price.discount
+    discount: price.discount,
+    categories: {
+      clothes: false,
+      books: false
+    }
+  };
+
+  handleCategoryChange = e => {
+    const { name } = e.target;
+
+    this.setState(prevState => {
+      return {
+        categories: {
+          ...prevState.categories,
+          [name]: !prevState.categories[name]
+        }
+      };
+    });
   };
 
   getChangeHandlerFor = fieldName => {
@@ -51,17 +68,43 @@ export default class App extends Component {
   };
 
   getFilteredProducts(products, min, max, discountPercent) {
-    return products
-      .filter(({ price, discount }) =>
-        discountPercent > 0
-          ? isPriceAndDiscountValid(price, min, max, discount, discountPercent)
-          : isPriceValid(price, min, max)
-      )
-      .sort((a, b) => a.price - b.price);
+    const checkedProducts = Object.entries(this.state.categories)
+      .filter(category => category[1])
+      .map(category => category[0]);
+
+    return products.filter(({ price, discount, category }) => {
+      if (discountPercent > 0) {
+        return isPriceAndDiscountValid(
+          price,
+          min,
+          max,
+          discount,
+          discountPercent
+        );
+      }
+
+      if (checkedProducts.length > 0) {
+        return checkedProducts.includes(category);
+      }
+
+      return isPriceValid(price, min, max);
+    });
   }
 
+  handleResetFilters = () => {
+    this.setState({
+      min: minPrice,
+      max: maxPrice,
+      discount: price.discount,
+      categories: {
+        clothes: false,
+        books: false
+      }
+    });
+  };
+
   render() {
-    const { min, max, discount } = this.state;
+    const { min, max, discount, categories } = this.state;
 
     return (
       <div className={s.container}>
@@ -69,8 +112,11 @@ export default class App extends Component {
           min={min}
           max={max}
           discount={discount}
-          handleChange={this.getChangeHandlerFor}
+          handleInputChange={this.getChangeHandlerFor}
           categoryLabels={labels}
+          categories={categories}
+          handleCategoryChange={this.handleCategoryChange}
+          handleResetFilters={this.handleResetFilters}
         />
         <Products
           products={this.getFilteredProducts(products, min, max, discount)}

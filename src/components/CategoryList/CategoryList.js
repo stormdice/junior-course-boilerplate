@@ -2,11 +2,16 @@ import React from 'react';
 import s from './CategoryList.module.css';
 import CategoryLabel from '../CategoryLabel/CategoryLabel';
 
-const CategoryList = ({ categoryLabels }) => {
+const CategoryList = ({ categoryLabels, handleCategoryChange, categories }) => {
   const renderLabels = categoryLabels.map(({ id, name, title }) => {
     return (
       <li className={s.category} key={id}>
-        <CategoryLabel name={name} title={title} />
+        <CategoryLabel
+          name={name}
+          title={title}
+          handleCategoryChange={handleCategoryChange}
+          checked={categories[name]}
+        />
       </li>
     );
   });

@@ -6,7 +6,16 @@ import s from './Filter.module.css';
 
 export default class Filter extends LogRender {
   render() {
-    const { min, max, discount, handleChange, categoryLabels } = this.props;
+    const {
+      min,
+      max,
+      discount,
+      handleInputChange,
+      categoryLabels,
+      categories,
+      handleCategoryChange,
+      handleResetFilters
+    } = this.props;
 
     return (
       <form className={s.filter}>
@@ -19,7 +28,7 @@ export default class Filter extends LogRender {
                 name="min"
                 placeholder={min}
                 value={min}
-                onInputChange={handleChange('min')}
+                onInputChange={handleInputChange('min')}
               />
             </label>
             <label className={s.field}>
@@ -28,7 +37,7 @@ export default class Filter extends LogRender {
                 name="max"
                 placeholder={max}
                 value={max}
-                onInputChange={handleChange('max')}
+                onInputChange={handleInputChange('max')}
               />
             </label>
           </div>
@@ -38,14 +47,18 @@ export default class Filter extends LogRender {
             title="Скидка"
             name="discount"
             value={discount}
-            onInputChange={handleChange('discount')}
+            onInputChange={handleInputChange('discount')}
           />
         </fieldset>
         <fieldset className={s.fieldset}>
           <legend className={s.title}>Категории</legend>
-          <CategoryList categoryLabels={categoryLabels} />
+          <CategoryList
+            categoryLabels={categoryLabels}
+            handleCategoryChange={handleCategoryChange}
+            categories={categories}
+          />
         </fieldset>
-        <button className={s.reset} type="button">
+        <button className={s.reset} type="button" onClick={handleResetFilters}>
           Сбросить фильтры
         </button>
       </form>
