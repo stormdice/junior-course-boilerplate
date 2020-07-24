@@ -7,9 +7,6 @@ import ResetFilters from '../ResetFilters';
 export default class Filter extends LogRender {
   render() {
     const {
-      min,
-      max,
-      discount,
       handleInputChange,
       categoryLabels,
       categories,
@@ -19,11 +16,8 @@ export default class Filter extends LogRender {
 
     return (
       <form className={s.filter}>
-        <FieldPrice min={min} max={max} handleInputChange={handleInputChange} />
-        <FieldDiscount
-          discount={discount}
-          handleInputChange={handleInputChange}
-        />
+        <FieldPrice handleInputChange={handleInputChange} />
+        <FieldDiscount handleInputChange={handleInputChange} />
         <FieldCategories
           categoryLabels={categoryLabels}
           categories={categories}

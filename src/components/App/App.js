@@ -3,6 +3,7 @@ import { products, price, labels } from '../../products.json';
 import Filter from '../Filter';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
+import { FormProvider } from '../FormContext';
 import s from './App.module.css';
 
 const DISCOUNT_LIMIT = 100;
@@ -104,24 +105,22 @@ export default class App extends Component {
   };
 
   render() {
-    const { min, max, discount, categories } = this.state;
+    const { min, max, discount } = this.state;
 
     return (
-      <div className={s.container}>
-        <Filter
-          min={min}
-          max={max}
-          discount={discount}
-          handleInputChange={this.getChangeHandlerFor}
-          categoryLabels={labels}
-          categories={categories}
-          handleCategoryChange={this.handleCategoryChange}
-          handleResetFilters={this.handleResetFilters}
-        />
-        <Products
-          products={this.getFilteredProducts(products, min, max, discount)}
-        />
-      </div>
+      <FormProvider value={this.state}>
+        <div className={s.container}>
+          <Filter
+            handleInputChange={this.getChangeHandlerFor}
+            categoryLabels={labels}
+            handleCategoryChange={this.handleCategoryChange}
+            handleResetFilters={this.handleResetFilters}
+          />
+          <Products
+            products={this.getFilteredProducts(products, min, max, discount)}
+          />
+        </div>
+      </FormProvider>
     );
   }
 }

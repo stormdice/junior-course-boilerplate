@@ -3,22 +3,15 @@ import pt from 'prop-types';
 import Field from '../Field';
 import PriceRangeForm from '../PriceRangeForm';
 
-const FieldPrice = ({ min, max, handleInputChange }) => (
+const FieldPrice = ({ handleInputChange }) => (
   <Field
     input={
-      <PriceRangeForm
-        title="Цена"
-        min={min}
-        max={max}
-        handleInputChange={handleInputChange}
-      />
+      <PriceRangeForm title="Цена" handleInputChange={handleInputChange} />
     }
   />
 );
 
 FieldPrice.propTypes = {
-  min: pt.number.isRequired,
-  max: pt.number.isRequired,
   handleInputChange: pt.func.isRequired
 };
 

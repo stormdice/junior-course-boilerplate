@@ -3,13 +3,12 @@ import pt from 'prop-types';
 import Field from '../Field';
 import { InputDiscount } from '../Inputs';
 
-const FieldDiscount = ({ discount, handleInputChange }) => (
+const FieldDiscount = ({ handleInputChange }) => (
   <Field
     input={
       <InputDiscount
         title="Скидка"
         name="discount"
-        value={discount}
         handleInputChange={handleInputChange('discount')}
       />
     }
@@ -17,7 +16,6 @@ const FieldDiscount = ({ discount, handleInputChange }) => (
 );
 
 FieldDiscount.propTypes = {
-  discount: pt.number.isRequired,
   handleInputChange: pt.func.isRequired
 };
 
