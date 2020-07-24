@@ -1,4 +1,5 @@
 import React from 'react';
+import pt from 'prop-types';
 import cn from 'classnames';
 import ProductItem from 'csssr-school-product-card';
 import LogRender from '../LogRender';
@@ -47,3 +48,7 @@ export default class ProductsList extends LogRender {
     return <ul className={s.products}>{renderProducts}</ul>;
   }
 }
+
+ProductsList.propTypes = {
+  products: pt.array.isRequired
+};

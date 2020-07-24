@@ -1,4 +1,5 @@
 import React from 'react';
+import pt from 'prop-types';
 import LogRender from '../LogRender';
 import ProductsList from '../ProductsList';
 import Pagination from '../Pagination';
@@ -18,3 +19,7 @@ export default class Products extends LogRender {
     );
   }
 }
+
+Products.propTypes = {
+  products: pt.array.isRequired
+};

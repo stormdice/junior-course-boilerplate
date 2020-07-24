@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import pt from 'prop-types';
 import s from './CategoryLabel.module.css';
 
 export default class CategoryLabel extends Component {
   render() {
     const { name, title, handleCategoryChange, checked } = this.props;
+
     return (
       <div>
         <input
@@ -21,3 +23,10 @@ export default class CategoryLabel extends Component {
     );
   }
 }
+
+CategoryLabel.propTypes = {
+  name: pt.string.isRequired,
+  title: pt.string.isRequired,
+  handleCategoryChange: pt.func.isRequired,
+  checked: pt.bool.isRequired
+};
