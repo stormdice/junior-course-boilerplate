@@ -5,26 +5,27 @@
   "products": [
     {
       "id": 1,
-      "title": "Название первого товара",
+      "title": "Название первого товара. Категория clothes",
       "img": "./img/product1.jpg",
       "isInStock": true,
       "rating": 4,
       "maxRating": 5,
-      "price": 5000
+      "price": 5000,
+      "category": "clothes"
     },
     {
       "id": 2,
-      "title": "Название второго товара",
+      "title": "Название второго товара. Категория books",
       "img": "./img/product2.jpg",
       "isInStock": false,
       "rating": 4,
       "maxRating": 5,
       "price": 10000,
-      "category": "clothes"
+      "category": "books"
     },
     {
       "id": 3,
-      "title": "Название третьего товара",
+      "title": "Название третьего товара. Категория clothes",
       "img": "./img/product3.jpg",
       "isInStock": true,
       "rating": 4,
@@ -32,11 +33,11 @@
       "price": 20000,
       "subPriceContent": 15000,
       "discount": 25,
-      "category": "books"
+      "category": "clothes"
     },
     {
       "id": 4,
-      "title": "Название четвертого товара",
+      "title": "Название четвертого товара. Категория books",
       "img": "./img/product4.jpg",
       "isInStock": true,
       "rating": 4,
@@ -48,7 +49,7 @@
     },
     {
       "id": 5,
-      "title": "Название пятого товара",
+      "title": "Название пятого товара. Категория clothes",
       "img": "./img/product5.jpg",
       "isInStock": true,
       "rating": 4,
@@ -58,7 +59,7 @@
     },
     {
       "id": 6,
-      "title": "Название шестого товара",
+      "title": "Название шестого товара. Категория books",
       "img": "./img/product6.jpg",
       "isInStock": false,
       "rating": 4,
@@ -66,7 +67,7 @@
       "price": 40000,
       "subPriceContent": 20000,
       "discount": 50,
-      "category": "clothes"
+      "category": "books"
     }
   ],
   "labels": [
