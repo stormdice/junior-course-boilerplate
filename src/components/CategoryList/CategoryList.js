@@ -34,8 +34,7 @@ const CategoryList = ({ title, categoryLabels, handleCategoryChange }) => {
 CategoryList.propTypes = {
   title: pt.string.isRequired,
   categoryLabels: pt.array.isRequired,
-  handleCategoryChange: pt.func.isRequired,
-  categories: pt.object.isRequired
+  handleCategoryChange: pt.func.isRequired
 };
 
 export default CategoryList;

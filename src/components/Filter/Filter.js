@@ -23,7 +23,7 @@ export default class Filter extends LogRender {
           categories={categories}
           handleCategoryChange={handleCategoryChange}
         />
-        <ResetFilters onClick={handleResetFilters} />
+        <ResetFilters handleResetFilters={handleResetFilters} />
       </form>
     );
   }

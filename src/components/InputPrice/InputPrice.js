@@ -1,25 +1,20 @@
 import React from 'react';
 import pt from 'prop-types';
-import LogRender from '../LogRender';
 import s from './InputPrice.module.css';
 
-export default class InputPrice extends LogRender {
-  render() {
-    const { name, placeholder, value, handleInputChange } = this.props;
-
-    return (
-      <input
-        type="text"
-        className={s.input}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={handleInputChange}
-        required
-      />
-    );
-  }
-}
+const InputPrice = ({ name, placeholder, value, handleInputChange }) => {
+  return (
+    <input
+      type="text"
+      className={s.input}
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      onChange={handleInputChange}
+      required
+    />
+  );
+};
 
 InputPrice.propTypes = {
   name: pt.string.isRequired,
@@ -27,3 +22,5 @@ InputPrice.propTypes = {
   value: pt.number.isRequired,
   handleInputChange: pt.func.isRequired
 };
+
+export default InputPrice;

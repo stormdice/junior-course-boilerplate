@@ -17,8 +17,7 @@ const FieldCategories = ({ categoryLabels, handleCategoryChange }) => (
 
 FieldCategories.propTypes = {
   categoryLabels: pt.array.isRequired,
-  handleCategoryChange: pt.func.isRequired,
-  categories: pt.object.isRequired
+  handleCategoryChange: pt.func.isRequired
 };
 
 export default FieldCategories;

@@ -1,6 +1,6 @@
 import React from 'react';
-import { InputMin, InputMax } from '../Inputs';
 import FieldTitle from '../FieldTitle';
+import { InputMin, InputMax } from '../Inputs';
 import { FormConsumer } from '../FormContext';
 import pt from 'prop-types';
 import s from './PriceRangeForm.module.css';
