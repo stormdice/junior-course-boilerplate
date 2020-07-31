@@ -1,12 +1,12 @@
 import React from 'react';
-import Discount from 'csssr-school-input-discount';
-import { FormConsumer } from '../FormContext';
+import DiscountComponent from 'csssr-school-input-discount';
+import { FormConsumer } from '../../contexts';
 
-const DiscountForm = ({ title, name, handleInputChange }) => {
+const Discount = ({ title, name, handleInputChange }) => {
   return (
     <FormConsumer>
       {({ discount }) => (
-        <Discount
+        <DiscountComponent
           title={title}
           name={name}
           value={discount}
@@ -17,4 +17,4 @@ const DiscountForm = ({ title, name, handleInputChange }) => {
   );
 };
 
-export default DiscountForm;
+export default Discount;

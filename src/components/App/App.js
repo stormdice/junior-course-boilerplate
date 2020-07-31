@@ -1,34 +1,27 @@
 import React, { Component } from 'react';
 import { products, price, labels } from '../../products.json';
-import Filter from '../Filter';
+import FiltersForm from '../FiltersForm';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
-import { FormProvider } from '../FormContext';
+import { FormProvider } from '../../contexts';
 import s from './App.module.css';
 
 const DISCOUNT_LIMIT = 100;
 const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
-/**
- * Проверяет валидность цен
- * @param {number} price - цена введённая пользователем
- * @param {number} min - минимальная цена
- * @param {number} max - максимальаня цена
- * @returns {boolean}
- */
-const isPriceValid = (price, min, max) => price >= min && price <= max;
+const setMinAndMaxPrice = (price, min, max) => price >= min && price <= max;
 
-/**
- * Проверяет наличие скидки
- * @param {number} discount
- * @param {number} discountPercent
- * @returns {boolean}
- */
 const hasDiscount = (discount, discountPercent) => discount === discountPercent;
 
-const isPriceAndDiscountValid = (price, min, max, discount, discountPercent) =>
-  isPriceValid(price, min, max) && hasDiscount(discount, discountPercent);
+const setMinAndMaxPriceAndHasDiscount = ({
+  price,
+  min,
+  max,
+  discount,
+  discountPercent
+}) =>
+  setMinAndMaxPrice(price, min, max) && hasDiscount(discount, discountPercent);
 
 export default class App extends Component {
   state = {
@@ -75,20 +68,20 @@ export default class App extends Component {
 
     return products.filter(({ price, discount, category }) => {
       if (discountPercent > 0) {
-        return isPriceAndDiscountValid(
+        return setMinAndMaxPriceAndHasDiscount({
           price,
           min,
           max,
           discount,
           discountPercent
-        );
+        });
       }
 
       if (checkedProducts.length > 0) {
         return checkedProducts.includes(category);
       }
 
-      return isPriceValid(price, min, max);
+      return setMinAndMaxPrice(price, min, max);
     });
   }
 
@@ -110,7 +103,7 @@ export default class App extends Component {
     return (
       <FormProvider value={this.state}>
         <div className={s.container}>
-          <Filter
+          <FiltersForm
             handleInputChange={this.getChangeHandlerFor}
             categoryLabels={labels}
             handleCategoryChange={this.handleCategoryChange}

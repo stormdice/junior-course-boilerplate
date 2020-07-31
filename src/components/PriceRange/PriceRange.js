@@ -1,16 +1,14 @@
 import React from 'react';
-import FieldTitle from '../FieldTitle';
 import { InputMin, InputMax } from '../Inputs';
-import { FormConsumer } from '../FormContext';
+import { FormConsumer } from '../../contexts';
 import pt from 'prop-types';
-import s from './PriceRangeForm.module.css';
+import s from './PriceRange.module.css';
 
-const PriceRangeForm = ({ title, handleInputChange }) => {
+const PriceRangeForm = ({ handleInputChange }) => {
   return (
     <FormConsumer>
       {({ min, max }) => (
         <>
-          <FieldTitle title={title} />
           <div className={s.container}>
             <label className={s.field}>
               <span className={s.label}>от</span>
@@ -38,7 +36,6 @@ const PriceRangeForm = ({ title, handleInputChange }) => {
 };
 
 PriceRangeForm.propTypes = {
-  title: pt.string.isRequired,
   handleInputChange: pt.func.isRequired
 };
 

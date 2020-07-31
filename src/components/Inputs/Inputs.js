@@ -1,9 +1,9 @@
 import withInputValidation from '../../HOC/withInputValidation';
 import InputPrice from '../InputPrice';
-import DiscountForm from '../DiscountForm';
+import Discount from '../Discount';
 
 const InputMin = withInputValidation(InputPrice);
 const InputMax = withInputValidation(InputPrice);
-const InputDiscount = withInputValidation(DiscountForm);
+const InputDiscount = withInputValidation(Discount);
 
 export { InputMin, InputMax, InputDiscount };

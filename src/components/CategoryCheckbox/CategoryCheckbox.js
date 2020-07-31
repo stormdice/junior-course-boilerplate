@@ -1,10 +1,10 @@
 import React from 'react';
 import pt from 'prop-types';
-import s from './CategoryLabel.module.css';
+import s from './CategoryCheckbox.module.css';
 
-const CategoryLabel = ({ name, title, handleCategoryChange, checked }) => {
+const CategoryCheckbox = ({ name, title, handleCategoryChange, checked }) => {
   return (
-    <div>
+    <>
       <input
         className={s.input}
         type="checkbox"
@@ -16,15 +16,15 @@ const CategoryLabel = ({ name, title, handleCategoryChange, checked }) => {
       <label className={s.label} htmlFor={name}>
         {title}
       </label>
-    </div>
+    </>
   );
 };
 
-CategoryLabel.propTypes = {
+CategoryCheckbox.propTypes = {
   name: pt.string.isRequired,
   title: pt.string.isRequired,
   handleCategoryChange: pt.func.isRequired,
   checked: pt.bool.isRequired
 };
 
-export default CategoryLabel;
+export default CategoryCheckbox;

@@ -9,7 +9,7 @@ const ResetFilters = ({ handleResetFilters }) => (
 );
 
 ResetFilters.propTypes = {
-  onClick: pt.func.isRequired
+  handleResetFilters: pt.func.isRequired
 };
 
 export default ResetFilters;
