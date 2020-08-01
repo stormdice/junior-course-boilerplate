@@ -2,33 +2,29 @@ import React from 'react';
 import pt from 'prop-types';
 import s from './CategoryList.module.css';
 import CategoryCheckbox from '../CategoryCheckbox/CategoryCheckbox';
-import { FormConsumer } from '../../contexts';
 
-const CategoryList = ({ categoryLabels, handleCategoryChange }) => {
+const CategoryList = ({ handleCategoryChange }) => {
   return (
-    <FormConsumer>
-      {({ categories }) => (
-        <ul className={s.categories}>
-          {categoryLabels.map(({ id, name, title }) => {
-            return (
-              <li className={s.category} key={id}>
-                <CategoryCheckbox
-                  name={name}
-                  title={title}
-                  handleCategoryChange={handleCategoryChange}
-                  checked={categories[name]}
-                />
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </FormConsumer>
+    <ul className={s.categories}>
+      <li className={s.category}>
+        <CategoryCheckbox
+          name="books"
+          title="Books"
+          handleCategoryChange={handleCategoryChange('books')}
+        />
+      </li>
+      <li className={s.category}>
+        <CategoryCheckbox
+          name="clothes"
+          title="Clothes"
+          handleCategoryChange={handleCategoryChange('clothes')}
+        />
+      </li>
+    </ul>
   );
 };
 
 CategoryList.propTypes = {
-  categoryLabels: pt.array.isRequired,
   handleCategoryChange: pt.func.isRequired
 };
 

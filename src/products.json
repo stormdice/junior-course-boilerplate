@@ -1,7 +1,4 @@
 {
-  "price": {
-    "discount": 0
-  },
   "products": [
     {
       "id": 1,
@@ -68,18 +65,6 @@
       "subPriceContent": 20000,
       "discount": 50,
       "category": "books"
-    }
-  ],
-  "labels": [
-    {
-      "id": 1,
-      "name": "clothes",
-      "title": "Clothes"
-    },
-    {
-      "id": 2,
-      "name": "books",
-      "title": "Books"
     }
   ]
 }

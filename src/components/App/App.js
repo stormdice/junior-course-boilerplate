@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { products, price, labels } from '../../products.json';
+import { products } from '../../products.json';
 import FiltersForm from '../FiltersForm';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
@@ -27,24 +27,26 @@ export default class App extends Component {
   state = {
     min: minPrice,
     max: maxPrice,
-    discount: price.discount,
-    categories: {
-      clothes: false,
-      books: false
-    }
+    discount: 0,
+    categories: new Set()
   };
 
-  handleCategoryChange = e => {
-    const { name } = e.target;
+  getChangeHandlerForCategories = fieldname => {
+    return isChecked => {
+      if (isChecked) {
+        return this.setState(prevState => ({
+          categories: prevState.categories.add(fieldname)
+        }));
+      }
 
-    this.setState(prevState => {
-      return {
-        categories: {
-          ...prevState.categories,
-          [name]: !prevState.categories[name]
-        }
-      };
-    });
+      if (!isChecked && this.state.categories.has(fieldname)) {
+        return this.setState(prevState => {
+          prevState.categories.delete(fieldname);
+
+          return { categories: prevState.categories };
+        });
+      }
+    };
   };
 
   getChangeHandlerFor = fieldName => {
@@ -62,9 +64,7 @@ export default class App extends Component {
   };
 
   getFilteredProducts(products, min, max, discountPercent) {
-    const checkedProducts = Object.entries(this.state.categories)
-      .filter(category => category[1])
-      .map(category => category[0]);
+    const checkedProducts = [...this.state.categories];
 
     return products.filter(({ price, discount, category }) => {
       if (discountPercent > 0) {
@@ -89,11 +89,8 @@ export default class App extends Component {
     this.setState({
       min: minPrice,
       max: maxPrice,
-      discount: price.discount,
-      categories: {
-        clothes: false,
-        books: false
-      }
+      discount: 0,
+      categories: new Set()
     });
   };
 
@@ -105,8 +102,7 @@ export default class App extends Component {
         <div className={s.container}>
           <FiltersForm
             handleInputChange={this.getChangeHandlerFor}
-            categoryLabels={labels}
-            handleCategoryChange={this.handleCategoryChange}
+            handleCategoryChange={this.getChangeHandlerForCategories}
             handleResetFilters={this.handleResetFilters}
           />
           <Products

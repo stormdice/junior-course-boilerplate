@@ -10,7 +10,6 @@ export default class FiltersForm extends LogRender {
   render() {
     const {
       handleInputChange,
-      categoryLabels,
       handleCategoryChange,
       handleResetFilters
     } = this.props;
@@ -30,10 +29,7 @@ export default class FiltersForm extends LogRender {
         </fieldset>
         <fieldset className={s.fieldset}>
           <legend className={s.title}>Категории</legend>
-          <CategoryList
-            categoryLabels={categoryLabels}
-            handleCategoryChange={handleCategoryChange}
-          />
+          <CategoryList handleCategoryChange={handleCategoryChange} />
         </fieldset>
         <ResetFilters handleResetFilters={handleResetFilters} />
       </form>
