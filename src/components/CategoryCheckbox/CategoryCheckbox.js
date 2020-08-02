@@ -2,10 +2,17 @@ import React from 'react';
 import pt from 'prop-types';
 import s from './CategoryCheckbox.module.css';
 
-const CategoryCheckbox = ({ name, title, handleCategoryChange }) => {
+const CategoryCheckbox = ({
+  name,
+  title,
+  handleCategoryChange,
+  categories
+}) => {
   const handleChange = ({ target }) => {
     handleCategoryChange(target.checked);
   };
+
+  const isChecked = categories.has(name);
 
   return (
     <>
@@ -15,6 +22,7 @@ const CategoryCheckbox = ({ name, title, handleCategoryChange }) => {
         id={name}
         name={name}
         onChange={handleChange}
+        checked={isChecked}
       />
       <label className={s.label} htmlFor={name}>
         {title}

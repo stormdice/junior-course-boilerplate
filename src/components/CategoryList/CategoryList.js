@@ -1,26 +1,35 @@
 import React from 'react';
+import CategoryCheckbox from '../CategoryCheckbox/CategoryCheckbox';
+import { FormConsumer } from '../../contexts/FormContext';
 import pt from 'prop-types';
 import s from './CategoryList.module.css';
-import CategoryCheckbox from '../CategoryCheckbox/CategoryCheckbox';
 
 const CategoryList = ({ handleCategoryChange }) => {
   return (
-    <ul className={s.categories}>
-      <li className={s.category}>
-        <CategoryCheckbox
-          name="books"
-          title="Books"
-          handleCategoryChange={handleCategoryChange('books')}
-        />
-      </li>
-      <li className={s.category}>
-        <CategoryCheckbox
-          name="clothes"
-          title="Clothes"
-          handleCategoryChange={handleCategoryChange('clothes')}
-        />
-      </li>
-    </ul>
+    <FormConsumer>
+      {({ categories }) => {
+        return (
+          <ul className={s.categories}>
+            <li className={s.category}>
+              <CategoryCheckbox
+                name="books"
+                title="Books"
+                handleCategoryChange={handleCategoryChange('books')}
+                categories={categories}
+              />
+            </li>
+            <li className={s.category}>
+              <CategoryCheckbox
+                name="clothes"
+                title="Clothes"
+                handleCategoryChange={handleCategoryChange('clothes')}
+                categories={categories}
+              />
+            </li>
+          </ul>
+        );
+      }}
+    </FormConsumer>
   );
 };
 
