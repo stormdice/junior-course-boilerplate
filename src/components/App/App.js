@@ -10,18 +10,26 @@ const DISCOUNT_LIMIT = 100;
 const minPrice = minBy(product => product.price, products).price;
 const maxPrice = maxBy(product => product.price, products).price;
 
-const setMinAndMaxPrice = (price, min, max) => price >= min && price <= max;
+const filterByMinAndMaxPrice = ({ price }, min, max) =>
+  price >= min && price <= max;
 
-const hasDiscount = (discount, discountPercent) => discount === discountPercent;
+const filterByDiscount = (product, discountPercent) => {
+  if (discountPercent > 0) {
+    return product.discount === discountPercent;
+  }
 
-const setMinAndMaxPriceAndHasDiscount = ({
-  price,
-  min,
-  max,
-  discount,
-  discountPercent
-}) =>
-  setMinAndMaxPrice(price, min, max) && hasDiscount(discount, discountPercent);
+  return product;
+};
+
+const filterByCategory = (product, categories) => {
+  const checkedCategories = [...categories];
+
+  if (checkedCategories.length > 0) {
+    return checkedCategories.includes(product.category);
+  }
+
+  return product;
+};
 
 export default class App extends Component {
   state = {
@@ -63,26 +71,13 @@ export default class App extends Component {
     };
   };
 
-  getFilteredProducts(products, min, max, discountPercent) {
-    const checkedProducts = [...this.state.categories];
-
-    return products.filter(({ price, discount, category }) => {
-      if (discountPercent > 0) {
-        return setMinAndMaxPriceAndHasDiscount({
-          price,
-          min,
-          max,
-          discount,
-          discountPercent
-        });
-      }
-
-      if (checkedProducts.length > 0) {
-        return checkedProducts.includes(category);
-      }
-
-      return setMinAndMaxPrice(price, min, max);
-    });
+  getFilteredProducts(products, min, max, discountPercent, categories) {
+    return products.filter(
+      product =>
+        filterByMinAndMaxPrice(product, min, max) &&
+        filterByDiscount(product, discountPercent) &&
+        filterByCategory(product, categories)
+    );
   }
 
   handleResetFilters = () => {
@@ -95,7 +90,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { min, max, discount } = this.state;
+    const { min, max, discount, categories } = this.state;
 
     return (
       <FormProvider value={this.state}>
@@ -106,7 +101,13 @@ export default class App extends Component {
             handleResetFilters={this.handleResetFilters}
           />
           <Products
-            products={this.getFilteredProducts(products, min, max, discount)}
+            products={this.getFilteredProducts(
+              products,
+              min,
+              max,
+              discount,
+              categories
+            )}
           />
         </div>
       </FormProvider>
