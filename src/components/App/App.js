@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { products } from '../../products.json';
+import { productItems } from '../../products.json';
 import FiltersForm from '../FiltersForm';
 import Products from '../Products';
 import { minBy, maxBy } from 'csssr-school-utils';
@@ -7,8 +7,6 @@ import { FormProvider } from '../../contexts';
 import s from './App.module.css';
 
 const DISCOUNT_LIMIT = 100;
-const minPrice = minBy(product => product.price, products).price;
-const maxPrice = maxBy(product => product.price, products).price;
 
 const filterByMinAndMaxPrice = ({ price }, min, max) =>
   price >= min && price <= max;
@@ -33,11 +31,20 @@ const filterByCategory = (product, categories) => {
 
 export default class App extends Component {
   state = {
-    min: minPrice,
-    max: maxPrice,
+    products: [],
+    min: 0,
+    max: 0,
     discount: 0,
     categories: new Set()
   };
+
+  componentDidMount() {
+    this.setState({
+      products: productItems.sort((a, b) => a.price - b.price),
+      min: minBy(product => product.price, productItems).price,
+      max: maxBy(product => product.price, productItems).price
+    });
+  }
 
   getChangeHandlerForCategories = fieldname => {
     return isChecked => {
@@ -81,16 +88,20 @@ export default class App extends Component {
   }
 
   handleResetFilters = () => {
-    this.setState({
-      min: minPrice,
-      max: maxPrice,
-      discount: 0,
-      categories: new Set()
+    this.setState(prevState => {
+      prevState.categories.clear();
+
+      return {
+        min: minBy(product => product.price, this.state.products).price,
+        max: maxBy(product => product.price, this.state.products).price,
+        discount: 0,
+        categories: prevState.categories
+      };
     });
   };
 
   render() {
-    const { min, max, discount, categories } = this.state;
+    const { products, min, max, discount, categories } = this.state;
 
     return (
       <FormProvider value={this.state}>
