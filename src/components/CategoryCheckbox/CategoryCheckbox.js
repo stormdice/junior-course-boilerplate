@@ -12,7 +12,7 @@ const CategoryCheckbox = ({
     handleCategoryChange(target.checked);
   };
 
-  const isChecked = categories.has(name);
+  const isChecked = categories.some(category => category === name);
 
   return (
     <>

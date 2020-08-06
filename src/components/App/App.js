@@ -35,10 +35,14 @@ export default class App extends Component {
     min: 0,
     max: 0,
     discount: 0,
-    categories: new Set()
+    categories: []
   };
 
   componentDidMount() {
+    this.parseCategoriesQueryFromUrl();
+
+    window.addEventListener('popstate', this.setFromHistory);
+
     this.setState({
       products: productItems.sort((a, b) => a.price - b.price),
       min: minBy(product => product.price, productItems).price,
@@ -46,20 +50,73 @@ export default class App extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.categories !== this.state.categories) {
+      this.addCategoriesQueryToUrl();
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('popstate', this.setFromHistory);
+  }
+
+  setFromHistory = () => {
+    const url = new URL(window.location.href);
+    const categories = url.searchParams.get('categories');
+
+    if (categories === null || !categories) {
+      this.setState({
+        categories: []
+      });
+    }
+
+    this.setState({
+      categories: categories.split(',')
+    });
+  };
+
+  addCategoriesQueryToUrl() {
+    const url = new URL(window.location.href);
+    const categories = url.searchParams.get('categories');
+
+    if (!categories) {
+      url.searchParams.set('categories', JSON.stringify(this.state.categories));
+    }
+
+    url.searchParams.set('categories', this.state.categories);
+    window.history.pushState(null, null, url);
+  }
+
+  parseCategoriesQueryFromUrl() {
+    const url = new URL(window.location.href);
+    const categories = url.searchParams.get('categories');
+
+    if (categories === null || !categories) {
+      return;
+    }
+
+    this.setState({
+      categories: categories.split(',')
+    });
+  }
+
   getChangeHandlerForCategories = fieldname => {
     return isChecked => {
       if (isChecked) {
         return this.setState(prevState => ({
-          categories: prevState.categories.add(fieldname)
+          categories: [...new Set([...prevState.categories, fieldname])]
         }));
       }
 
-      if (!isChecked && this.state.categories.has(fieldname)) {
-        return this.setState(prevState => {
-          prevState.categories.delete(fieldname);
-
-          return { categories: prevState.categories };
-        });
+      if (
+        !isChecked &&
+        this.state.categories.some(category => category === fieldname)
+      ) {
+        return this.setState(prevState => ({
+          categories: prevState.categories.filter(
+            category => category !== fieldname
+          )
+        }));
       }
     };
   };
