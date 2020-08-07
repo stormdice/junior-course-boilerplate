@@ -50,7 +50,7 @@ export default class App extends Component {
     });
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(_prevProps, prevState) {
     if (prevState.categories !== this.state.categories) {
       this.addCategoriesQueryToUrl();
     }
@@ -64,24 +64,13 @@ export default class App extends Component {
     const url = new URL(window.location.href);
     const categories = url.searchParams.get('categories');
 
-    if (categories === null || !categories) {
-      this.setState({
-        categories: []
-      });
-    }
-
     this.setState({
-      categories: categories.split(',')
+      categories: categories ? categories.split(',') : []
     });
   };
 
   addCategoriesQueryToUrl() {
     const url = new URL(window.location.href);
-    const categories = url.searchParams.get('categories');
-
-    if (!categories) {
-      url.searchParams.set('categories', JSON.stringify(this.state.categories));
-    }
 
     url.searchParams.set('categories', this.state.categories);
     window.history.pushState(null, null, url);
@@ -91,13 +80,11 @@ export default class App extends Component {
     const url = new URL(window.location.href);
     const categories = url.searchParams.get('categories');
 
-    if (categories === null || !categories) {
-      return;
+    if (categories) {
+      this.setState({
+        categories: categories.split(',')
+      });
     }
-
-    this.setState({
-      categories: categories.split(',')
-    });
   }
 
   getChangeHandlerForCategories = fieldname => {
