@@ -8,26 +8,14 @@ import s from './App.module.css';
 
 const DISCOUNT_LIMIT = 100;
 
-const filterByMinAndMaxPrice = ({ price }, min, max) =>
+const isProductPriceInRange = ({ price }, min, max) =>
   price >= min && price <= max;
 
-const filterByDiscount = (product, discountPercent) => {
-  if (discountPercent > 0) {
-    return product.discount === discountPercent;
-  }
+const doesProductHasFilteredDiscount = ({ discount }, discountPercent) =>
+  discountPercent === 0 || discount === discountPercent;
 
-  return product;
-};
-
-const filterByCategory = (product, categories) => {
-  const checkedCategories = [...categories];
-
-  if (checkedCategories.length > 0) {
-    return checkedCategories.includes(product.category);
-  }
-
-  return product;
-};
+const doesProductHasFilteredCategory = ({ category }, categories) =>
+  categories.length === 0 || categories.includes(category);
 
 export default class App extends Component {
   state = {
@@ -41,7 +29,7 @@ export default class App extends Component {
   componentDidMount() {
     this.parseCategoriesQueryFromUrl();
 
-    window.addEventListener('popstate', this.setFromHistory);
+    window.addEventListener('popstate', this.parseCategoriesQueryFromUrl);
 
     this.setState({
       products: productItems.sort((a, b) => a.price - b.price),
@@ -57,17 +45,8 @@ export default class App extends Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('popstate', this.setFromHistory);
+    window.removeEventListener('popstate', this.parseCategoriesQueryFromUrl);
   }
-
-  setFromHistory = () => {
-    const url = new URL(window.location.href);
-    const categories = url.searchParams.get('categories');
-
-    this.setState({
-      categories: categories ? categories.split(',') : []
-    });
-  };
 
   addCategoriesQueryToUrl() {
     const url = new URL(window.location.href);
@@ -76,35 +55,24 @@ export default class App extends Component {
     window.history.pushState(null, null, url);
   }
 
-  parseCategoriesQueryFromUrl() {
+  parseCategoriesQueryFromUrl = () => {
     const url = new URL(window.location.href);
     const categories = url.searchParams.get('categories');
 
-    if (categories) {
-      this.setState({
-        categories: categories.split(',')
-      });
-    }
-  }
+    this.setState({
+      categories: categories ? categories.split(',') : []
+    });
+  };
 
-  getChangeHandlerForCategories = fieldname => {
+  getChangeHandlerForCategories = fieldName => {
     return isChecked => {
-      if (isChecked) {
-        return this.setState(prevState => ({
-          categories: [...new Set([...prevState.categories, fieldname])]
-        }));
-      }
+      const uniqueCategories = new Set(this.state.categories);
+      const method = isChecked ? 'add' : 'delete';
+      uniqueCategories[method](fieldName);
 
-      if (
-        !isChecked &&
-        this.state.categories.some(category => category === fieldname)
-      ) {
-        return this.setState(prevState => ({
-          categories: prevState.categories.filter(
-            category => category !== fieldname
-          )
-        }));
-      }
+      this.setState({
+        categories: [...uniqueCategories]
+      });
     };
   };
 
@@ -122,30 +90,33 @@ export default class App extends Component {
     };
   };
 
-  getFilteredProducts(products, min, max, discountPercent, categories) {
+  getFilteredProducts({ products, min, max, discount, categories }) {
     return products.filter(
       product =>
-        filterByMinAndMaxPrice(product, min, max) &&
-        filterByDiscount(product, discountPercent) &&
-        filterByCategory(product, categories)
+        isProductPriceInRange(product, min, max) &&
+        doesProductHasFilteredDiscount(product, discount) &&
+        doesProductHasFilteredCategory(product, categories)
     );
   }
 
   handleResetFilters = () => {
-    this.setState(prevState => {
-      prevState.categories.clear();
-
-      return {
-        min: minBy(product => product.price, this.state.products).price,
-        max: maxBy(product => product.price, this.state.products).price,
-        discount: 0,
-        categories: prevState.categories
-      };
+    this.setState({
+      min: minBy(product => product.price, this.state.products).price,
+      max: maxBy(product => product.price, this.state.products).price,
+      discount: 0,
+      categories: []
     });
   };
 
   render() {
     const { products, min, max, discount, categories } = this.state;
+    const filteredProducts = this.getFilteredProducts({
+      products,
+      min,
+      max,
+      discount,
+      categories
+    });
 
     return (
       <FormProvider value={this.state}>
@@ -155,15 +126,7 @@ export default class App extends Component {
             handleCategoryChange={this.getChangeHandlerForCategories}
             handleResetFilters={this.handleResetFilters}
           />
-          <Products
-            products={this.getFilteredProducts(
-              products,
-              min,
-              max,
-              discount,
-              categories
-            )}
-          />
+          <Products products={filteredProducts} />
         </div>
       </FormProvider>
     );
