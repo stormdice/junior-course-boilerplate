@@ -1,7 +1,7 @@
 import React from 'react';
+import pt from 'prop-types';
 import cn from 'classnames';
 import ProductItem from 'csssr-school-product-card';
-import LogRender from '../LogRender';
 import ProductPrice from '../ProductPrice';
 import s from './ProductsList.module.css';
 
@@ -10,40 +10,43 @@ const renderPrice = (price, isSubPrice = false) => {
 };
 
 const ratingComponent = ({ isFilled }) => {
-  return <div className={cn(s.star, isFilled && s.starFill)} />;
+  return <div className={cn(s.star, isFilled && s.fill)} />;
 };
 
-export default class ProductsList extends LogRender {
-  render() {
-    const { products } = this.props;
-    const renderProducts = products.map(
-      ({
-        id,
-        isInStock,
-        img,
-        title,
-        price,
-        subPriceContent,
-        maxRating,
-        rating
-      }) => {
-        return (
-          <li key={id}>
-            <ProductItem
-              isInStock={isInStock}
-              img={img}
-              title={title}
-              price={renderPrice(price)}
-              subPriceContent={renderPrice(subPriceContent, true)}
-              maxRating={maxRating}
-              rating={rating}
-              ratingComponent={ratingComponent}
-            />
-          </li>
-        );
-      }
-    );
+const ProductsList = ({ products }) => {
+  const renderProducts = products.map(
+    ({
+      id,
+      isInStock,
+      img,
+      title,
+      price,
+      subPriceContent,
+      maxRating,
+      rating
+    }) => {
+      return (
+        <li key={id}>
+          <ProductItem
+            isInStock={isInStock}
+            img={img}
+            title={title}
+            price={renderPrice(price)}
+            subPriceContent={renderPrice(subPriceContent, true)}
+            maxRating={maxRating}
+            rating={rating}
+            ratingComponent={ratingComponent}
+          />
+        </li>
+      );
+    }
+  );
 
-    return <ul className={s.productsList}>{renderProducts}</ul>;
-  }
-}
+  return <ul className={s.products}>{renderProducts}</ul>;
+};
+
+ProductsList.propTypes = {
+  products: pt.array.isRequired
+};
+
+export default ProductsList;

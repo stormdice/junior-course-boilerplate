@@ -1,4 +1,4 @@
-.productPrice {
+.price {
   display: inline-block;
   vertical-align: baseline;
   margin-right: 8px;
@@ -7,10 +7,10 @@
   line-height: 24px;
 }
 
-.productPrice span {
+.unit {
   font-weight: 400;
 }
 
-.subPrice {
+.small {
   font-size: 12px;
 }

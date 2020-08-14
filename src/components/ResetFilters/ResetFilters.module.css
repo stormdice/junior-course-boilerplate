@@ -1,0 +1,29 @@
+.reset {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 8px;
+  box-sizing: border-box;
+
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 14px;
+  color: #323c48;
+
+  background-color: white;
+  border: 1px solid #323c48;
+
+  cursor: pointer;
+  user-select: none;
+  outline: none;
+}
+
+.reset:hover,
+.reset:focus {
+  background-color: #323c48;
+  color: white;
+}
+
+.reset:active {
+  opacity: 0.8;
+}

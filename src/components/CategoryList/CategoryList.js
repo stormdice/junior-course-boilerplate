@@ -1,17 +1,40 @@
 import React from 'react';
+import CategoryCheckbox from '../CategoryCheckbox/CategoryCheckbox';
+import { FormConsumer } from '../../contexts/FormContext';
+import pt from 'prop-types';
 import s from './CategoryList.module.css';
-import CategoryLabel from '../CategoryLabel/CategoryLabel';
 
-const CategoryList = ({ categoryLabels }) => {
-  const renderLabels = categoryLabels.map(({ id, name, title }) => {
-    return (
-      <li className={s.listItem} key={id}>
-        <CategoryLabel name={name} title={title} />
-      </li>
-    );
-  });
+const CategoryList = ({ handleCategoryChange }) => {
+  return (
+    <FormConsumer>
+      {({ categories }) => {
+        return (
+          <ul className={s.categories}>
+            <li className={s.category}>
+              <CategoryCheckbox
+                name="books"
+                title="Books"
+                handleCategoryChange={handleCategoryChange('books')}
+                categories={categories}
+              />
+            </li>
+            <li className={s.category}>
+              <CategoryCheckbox
+                name="clothes"
+                title="Clothes"
+                handleCategoryChange={handleCategoryChange('clothes')}
+                categories={categories}
+              />
+            </li>
+          </ul>
+        );
+      }}
+    </FormConsumer>
+  );
+};
 
-  return <ul className={s.list}>{renderLabels}</ul>;
+CategoryList.propTypes = {
+  handleCategoryChange: pt.func.isRequired
 };
 
 export default CategoryList;
