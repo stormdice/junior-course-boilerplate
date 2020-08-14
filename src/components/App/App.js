@@ -11,10 +11,10 @@ const DISCOUNT_LIMIT = 100;
 const isProductPriceInRange = ({ price }, min, max) =>
   price >= min && price <= max;
 
-const doesProductHasFilteredDiscount = ({ discount }, discountPercent) =>
+const checkProductContainsFilteredDiscount = ({ discount }, discountPercent) =>
   discountPercent === 0 || discount === discountPercent;
 
-const doesProductHasFilteredCategory = ({ category }, categories) =>
+const checkProductContainsFilteredCategory = ({ category }, categories) =>
   categories.length === 0 || categories.includes(category);
 
 export default class App extends Component {
@@ -94,8 +94,8 @@ export default class App extends Component {
     return products.filter(
       product =>
         isProductPriceInRange(product, min, max) &&
-        doesProductHasFilteredDiscount(product, discount) &&
-        doesProductHasFilteredCategory(product, categories)
+        checkProductContainsFilteredDiscount(product, discount) &&
+        checkProductContainsFilteredCategory(product, categories)
     );
   }
 
