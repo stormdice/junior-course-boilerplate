@@ -26,7 +26,7 @@ const ProductsList = ({ products }) => {
       rating
     }) => {
       return (
-        <li key={id}>
+        <li key={id} data-testid="product-list-item">
           <ProductItem
             isInStock={isInStock}
             img={img}

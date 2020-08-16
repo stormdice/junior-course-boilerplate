@@ -15,7 +15,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint:js": "eslint \"src/**/*.{js, jsx}\" --cache --fix"
+    "lint:js": "eslint \"src/**/*.{js, jsx}\" --cache --fix",
+    "test": "react-scripts test"
   },
   "browserslist": [
     ">0.2%",
@@ -24,6 +25,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.8",
     "eslint-plugin-prettier": "3.1.2",
     "husky": "3.1.0",
     "lint-staged": "9.5.0",
