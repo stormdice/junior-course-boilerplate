@@ -8,8 +8,8 @@ import s from './App.module.css';
 
 const DISCOUNT_LIMIT = 100;
 
-const isProductPriceInRange = ({ price }, min, max) =>
-  price >= min && price <= max;
+const isProductPriceInRange = (product, min, max) =>
+  max === '' ? product : product.price >= min && product.price <= max;
 
 const isProductContainsFilteredDiscount = ({ discount }, discountPercent) =>
   discountPercent === 0 || discount === discountPercent;
@@ -20,8 +20,10 @@ const isProductContainsFilteredCategory = ({ category }, categories) =>
 export default class App extends Component {
   state = {
     products: [],
-    min: 0,
-    max: 0,
+    min: '',
+    minProductPrice: 0,
+    max: '',
+    maxProductPrice: 0,
     discount: 0,
     categories: []
   };
@@ -33,8 +35,8 @@ export default class App extends Component {
 
     this.setState({
       products: productItems.sort((a, b) => a.price - b.price),
-      min: minBy(product => product.price, productItems).price,
-      max: maxBy(product => product.price, productItems).price
+      minProductPrice: minBy(product => product.price, productItems).price,
+      maxProductPrice: maxBy(product => product.price, productItems).price
     });
   }
 
@@ -78,8 +80,8 @@ export default class App extends Component {
 
   getChangeHandlerFor = fieldName => {
     return fieldValue => {
-      if (fieldName === 'min' && fieldValue > this.state.max) {
-        return this.state.min;
+      if (fieldName === 'min' && fieldValue > this.state.maxProductPrice) {
+        return;
       }
 
       if (fieldName === 'discount' && fieldValue > DISCOUNT_LIMIT) {
@@ -101,8 +103,8 @@ export default class App extends Component {
 
   handleResetFilters = () => {
     this.setState({
-      min: minBy(product => product.price, this.state.products).price,
-      max: maxBy(product => product.price, this.state.products).price,
+      min: '',
+      max: '',
       discount: 0,
       categories: []
     });

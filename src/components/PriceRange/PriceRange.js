@@ -7,14 +7,14 @@ import s from './PriceRange.module.css';
 const PriceRangeForm = ({ handleInputChange }) => {
   return (
     <FormConsumer>
-      {({ min, max }) => (
+      {({ min, max, minProductPrice, maxProductPrice }) => (
         <>
           <div className={s.container}>
             <label className={s.field}>
               <span className={s.label}>от</span>
               <InputMin
                 name="min"
-                placeholder={min}
+                placeholder={minProductPrice}
                 value={min}
                 handleInputChange={handleInputChange('min')}
               />
@@ -23,7 +23,7 @@ const PriceRangeForm = ({ handleInputChange }) => {
               <span className={s.label}>до</span>
               <InputMax
                 name="max"
-                placeholder={max}
+                placeholder={maxProductPrice}
                 value={max}
                 handleInputChange={handleInputChange('max')}
               />
