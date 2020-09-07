@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e1066d0a.chunk.css",
+    "main.js": "/static/js/main.538a1ce8.chunk.js",
+    "main.js.map": "/static/js/main.538a1ce8.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.a0d61695.js",
+    "runtime-main.js.map": "/static/js/runtime-main.a0d61695.js.map",
+    "static/css/2.86ff3536.chunk.css": "/static/css/2.86ff3536.chunk.css",
+    "static/js/2.e34fe0e6.chunk.js": "/static/js/2.e34fe0e6.chunk.js",
+    "static/js/2.e34fe0e6.chunk.js.map": "/static/js/2.e34fe0e6.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a4b241989e84703a4b8dff7cb15ca0e1.js": "/precache-manifest.a4b241989e84703a4b8dff7cb15ca0e1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.86ff3536.chunk.css.map": "/static/css/2.86ff3536.chunk.css.map",
+    "static/css/main.e1066d0a.chunk.css.map": "/static/css/main.e1066d0a.chunk.css.map",
+    "static/media/ProductsList.module.css": "/static/media/star-filled.63c63076.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a0d61695.js",
+    "static/css/2.86ff3536.chunk.css",
+    "static/js/2.e34fe0e6.chunk.js",
+    "static/css/main.e1066d0a.chunk.css",
+    "static/js/main.538a1ce8.chunk.js"
+  ]
+}
