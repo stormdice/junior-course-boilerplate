@@ -2,12 +2,9 @@ import React from 'react';
 import pt from 'prop-types';
 import s from './CategoryCheckbox.module.css';
 
-const CategoryCheckbox = ({
-  name,
-  title,
-  handleCategoryChange,
-  categories
-}) => {
+const CategoryCheckbox = props => {
+  const { name, title, handleCategoryChange, categories } = props;
+
   const handleChange = ({ target }) => {
     handleCategoryChange(target.checked);
   };

@@ -1,19 +1,16 @@
 import React from 'react';
 import DiscountComponent from 'csssr-school-input-discount';
-import { FormConsumer } from '../../contexts';
 
-const Discount = ({ title, name, handleInputChange }) => {
+const Discount = props => {
+  const { title, name, handleInputChange, discount } = props;
+
   return (
-    <FormConsumer>
-      {({ discount }) => (
-        <DiscountComponent
-          title={title}
-          name={name}
-          value={discount}
-          onChange={handleInputChange}
-        />
-      )}
-    </FormConsumer>
+    <DiscountComponent
+      title={title}
+      name={name}
+      value={discount}
+      onChange={handleInputChange}
+    />
   );
 };
 

@@ -1,136 +1,15 @@
-import React, { Component } from 'react';
-import { productItems } from '../../products.json';
-import FiltersForm from '../FiltersForm';
-import Products from '../Products';
-import { minBy, maxBy } from 'csssr-school-utils';
-import { FormProvider } from '../../contexts';
+import React from 'react';
+import FiltersForm from '../../containers/FiltersForm';
+import Products from '../../containers/Products';
 import s from './App.module.css';
 
-const DISCOUNT_LIMIT = 100;
+const App = () => {
+  return (
+    <div className={s.container}>
+      <FiltersForm />
+      <Products />
+    </div>
+  );
+};
 
-const isProductPriceInRange = (product, min, max) =>
-  max === '' ? product : product.price >= min && product.price <= max;
-
-const isProductContainsFilteredDiscount = ({ discount }, discountPercent) =>
-  discountPercent === 0 || discount === discountPercent;
-
-const isProductContainsFilteredCategory = ({ category }, categories) =>
-  categories.length === 0 || categories.includes(category);
-
-export default class App extends Component {
-  state = {
-    products: [],
-    min: '',
-    minProductPrice: 0,
-    max: '',
-    maxProductPrice: 0,
-    discount: 0,
-    categories: []
-  };
-
-  componentDidMount() {
-    this.parseCategoriesQueryFromUrl();
-
-    window.addEventListener('popstate', this.parseCategoriesQueryFromUrl);
-
-    this.setState({
-      products: productItems.sort((a, b) => a.price - b.price),
-      minProductPrice: minBy(product => product.price, productItems).price,
-      maxProductPrice: maxBy(product => product.price, productItems).price
-    });
-  }
-
-  componentDidUpdate(_prevProps, prevState) {
-    if (prevState.categories !== this.state.categories) {
-      this.addCategoriesQueryToUrl();
-    }
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('popstate', this.parseCategoriesQueryFromUrl);
-  }
-
-  addCategoriesQueryToUrl() {
-    const url = new URL(window.location.href);
-
-    url.searchParams.set('categories', this.state.categories);
-    window.history.pushState(null, null, url);
-  }
-
-  parseCategoriesQueryFromUrl = () => {
-    const url = new URL(window.location.href);
-    const categories = url.searchParams.get('categories');
-
-    this.setState({
-      categories: categories ? categories.split(',') : []
-    });
-  };
-
-  getChangeHandlerForCategories = fieldName => {
-    return isChecked => {
-      const uniqueCategories = new Set(this.state.categories);
-      const method = isChecked ? 'add' : 'delete';
-      uniqueCategories[method](fieldName);
-
-      this.setState({
-        categories: [...uniqueCategories]
-      });
-    };
-  };
-
-  getChangeHandlerFor = fieldName => {
-    return fieldValue => {
-      if (fieldName === 'min' && fieldValue > this.state.maxProductPrice) {
-        return;
-      }
-
-      if (fieldName === 'discount' && fieldValue > DISCOUNT_LIMIT) {
-        return this.state.discount;
-      }
-
-      this.setState({ [fieldName]: fieldValue });
-    };
-  };
-
-  getFilteredProducts({ products, min, max, discount, categories }) {
-    return products.filter(
-      product =>
-        isProductPriceInRange(product, min, max) &&
-        isProductContainsFilteredDiscount(product, discount) &&
-        isProductContainsFilteredCategory(product, categories)
-    );
-  }
-
-  handleResetFilters = () => {
-    this.setState({
-      min: '',
-      max: '',
-      discount: 0,
-      categories: []
-    });
-  };
-
-  render() {
-    const { products, min, max, discount, categories } = this.state;
-    const filteredProducts = this.getFilteredProducts({
-      products,
-      min,
-      max,
-      discount,
-      categories
-    });
-
-    return (
-      <FormProvider value={this.state}>
-        <div className={s.container}>
-          <FiltersForm
-            handleInputChange={this.getChangeHandlerFor}
-            handleCategoryChange={this.getChangeHandlerForCategories}
-            handleResetFilters={this.handleResetFilters}
-          />
-          <Products products={filteredProducts} />
-        </div>
-      </FormProvider>
-    );
-  }
-}
+export default App;

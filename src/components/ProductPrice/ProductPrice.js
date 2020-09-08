@@ -4,7 +4,9 @@ import pt from 'prop-types';
 import { formatMoney } from 'csssr-school-utils';
 import s from './ProductPrice.module.css';
 
-const ProductPrice = ({ price, isSubPrice }) => {
+const ProductPrice = props => {
+  const { price, isSubPrice } = props;
+
   return (
     <div className={cn([s.price], { [s.small]: isSubPrice })}>
       {formatMoney(price, 0, ' ', ' ')} <span className={s.unit}>&#x20bd;</span>

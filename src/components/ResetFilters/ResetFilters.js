@@ -2,14 +2,14 @@ import React from 'react';
 import pt from 'prop-types';
 import s from './ResetFilters.module.css';
 
-const ResetFilters = ({ handleResetFilters }) => (
-  <button className={s.reset} type="button" onClick={handleResetFilters}>
+const ResetFilters = ({ handleClick }) => (
+  <button className={s.reset} type="button" onClick={handleClick}>
     Сбросить фильтры
   </button>
 );
 
 ResetFilters.propTypes = {
-  handleResetFilters: pt.func.isRequired
+  handleClick: pt.func.isRequired
 };
 
 export default ResetFilters;

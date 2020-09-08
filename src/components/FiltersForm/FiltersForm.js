@@ -1,38 +1,27 @@
 import React from 'react';
-import LogRender from '../LogRender';
-import PriceRange from '../PriceRange';
-import CategoryList from '../CategoryList';
-import { InputDiscount } from '../Inputs';
-import ResetFilters from '../ResetFilters';
+import PriceRange from '../../containers/PriceRange';
+import CategoryList from '../../containers/CategoryList';
+import Discount from '../../containers/Discount';
+import ResetFilters from '../../containers/ResetFilters';
 import s from './FiltersForm.module.css';
 
-export default class FiltersForm extends LogRender {
-  render() {
-    const {
-      handleInputChange,
-      handleCategoryChange,
-      handleResetFilters
-    } = this.props;
+const FiltersForm = ({ handleInputChange }) => {
+  return (
+    <form className={s.filter}>
+      <fieldset className={s.fieldset}>
+        <legend className={s.title}>Цена</legend>
+        <PriceRange handleInputChange={handleInputChange} />
+      </fieldset>
+      <fieldset className={s.fieldset}>
+        <Discount handleInputChange={handleInputChange('discount')} />
+      </fieldset>
+      <fieldset className={s.fieldset}>
+        <legend className={s.title}>Категории</legend>
+        <CategoryList />
+      </fieldset>
+      <ResetFilters />
+    </form>
+  );
+};
 
-    return (
-      <form className={s.filter}>
-        <fieldset className={s.fieldset}>
-          <legend className={s.title}>Цена</legend>
-          <PriceRange handleInputChange={handleInputChange} />
-        </fieldset>
-        <fieldset className={s.fieldset}>
-          <InputDiscount
-            title="Скидка"
-            name="discount"
-            handleInputChange={handleInputChange('discount')}
-          />
-        </fieldset>
-        <fieldset className={s.fieldset}>
-          <legend className={s.title}>Категории</legend>
-          <CategoryList handleCategoryChange={handleCategoryChange} />
-        </fieldset>
-        <ResetFilters handleResetFilters={handleResetFilters} />
-      </form>
-    );
-  }
-}
+export default FiltersForm;

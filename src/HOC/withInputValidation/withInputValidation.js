@@ -8,9 +8,11 @@ const getDisplayName = WrappedComponent => {
 const withInputValidation = HoccedComponent => {
   class withInputValidation extends Component {
     handleChange = ({ target }) => {
+      const { handleMinPriceInputChange } = this.props;
+      const handleInputChange = handleMinPriceInputChange;
       const value = toInt(target.value) === 0 ? '' : toInt(target.value);
 
-      this.props.handleInputChange(value);
+      handleInputChange(value);
     };
 
     render() {
