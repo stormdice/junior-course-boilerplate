@@ -10,7 +10,6 @@ const PriceRange = props => {
     minProductPrice,
     maxProductPrice
   } = props;
-
   return (
     <div className={s.container}>
       <label className={s.field}>

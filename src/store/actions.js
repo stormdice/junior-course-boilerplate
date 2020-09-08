@@ -26,6 +26,16 @@ const changeCategory = categories => {
   };
 };
 
+const setInputValue = (fieldName, fieldValue) => {
+  return {
+    type: 'SET_INPUT_VALUE',
+    payload: {
+      fieldName,
+      fieldValue
+    }
+  };
+};
+
 const resetFilters = () => {
   return {
     type: 'RESET_FILTERS'
@@ -37,5 +47,6 @@ export {
   setMinProductPrice,
   setMaxProductPrice,
   changeCategory,
-  resetFilters
+  resetFilters,
+  setInputValue
 };

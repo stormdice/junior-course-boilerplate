@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { InputDiscount } from '../components/Inputs';
 
 const Discount = props => {
-  const { discount } = props;
+  const { handleInputChange, discount } = props;
 
   return (
     <InputDiscount
       title="Скидка"
       name="discount"
-      handleInputChange={() => {}}
+      handleInputChange={handleInputChange}
       discount={discount}
     />
   );

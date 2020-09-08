@@ -1,55 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setInputValue } from '../store/actions';
 import FiltersFormView from '../components/FiltersForm';
 
-const DISCOUNT_LIMIT = 100;
-
-const FiltersForm = ({
-  min,
-  max,
-  minProductPrice,
-  maxProductPrice,
-  discount
-}) => {
-  const getChangeHandlerFor = fieldName => {
+const FiltersForm = ({ maxProductPrice, setInputValue }) => {
+  const getChangeHandlerFor = maxPrice => fieldName => {
     return fieldValue => {
-      if (fieldName === 'min' && fieldValue > maxProductPrice) {
+      if (fieldName === 'min' && fieldValue > maxPrice) {
         return;
       }
 
-      if (fieldName === 'discount' && fieldValue > DISCOUNT_LIMIT) {
-        return discount;
+      if (fieldName === 'discount' && fieldValue > 100) {
+        return fieldValue;
       }
 
-      this.setState({ [fieldName]: fieldValue });
+      setInputValue(fieldName, fieldValue);
     };
   };
 
   return (
-    <FiltersFormView
-      handleInputChange={() => {}}
-      min={min}
-      max={max}
-      minProductPrice={minProductPrice}
-      maxProductPrice={maxProductPrice}
-    />
+    <FiltersFormView handleInputChange={getChangeHandlerFor(maxProductPrice)} />
   );
 };
 
-const mapStateToProps = ({
-  min,
-  max,
-  minProductPrice,
-  maxProductPrice,
-  discount
-}) => {
+const mapStateToProps = ({ maxProductPrice }) => {
   return {
-    min,
-    max,
-    minProductPrice,
-    maxProductPrice,
-    discount
+    maxProductPrice
   };
 };
 
-export default connect(mapStateToProps)(FiltersForm);
+const mapDispatchToProps = dispatch => {
+  return {
+    setInputValue: (fieldName, fieldValue) =>
+      dispatch(setInputValue(fieldName, fieldValue))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FiltersForm);

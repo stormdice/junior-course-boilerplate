@@ -35,6 +35,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         min: action.payload
       };
+    case 'SET_INPUT_VALUE':
+      return {
+        ...state,
+        [action.payload.fieldName]: action.payload.fieldValue
+      };
     case 'RESET_FILTERS':
       return {
         ...state,
