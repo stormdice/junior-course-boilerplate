@@ -1,7 +1,7 @@
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 48px;
   width: 100%;
   max-width: 1040px;
   margin: 0 auto;

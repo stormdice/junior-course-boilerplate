@@ -1,7 +1,16 @@
 .filter {
-  width: 256px;
   padding-top: 104px;
-  padding-right: 48px;
+}
+
+.filter input {
+  outline: 2px solid transparent;
+  transition: outline-color 0.2s;
+}
+
+.filter input:hover,
+.filter input:focus {
+  outline-color: #323c48;
+  transition: outline-color 0.2s;
 }
 
 .fieldset {

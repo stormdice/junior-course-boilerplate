@@ -14,6 +14,16 @@
   justify-content: center;
 }
 
+.item:first-child .link {
+  min-width: 88px;
+  margin-right: 16px;
+}
+
+.item:last-child .link {
+  min-width: 88px;
+  margin-left: 16px;
+}
+
 .link {
   display: block;
   min-width: 34px;
@@ -29,21 +39,20 @@
 
   background: #ffffff;
   border: 1px solid #c5cfde;
+  user-select: none;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
-.prev {
-  min-width: 88px;
-  margin-right: 16px;
-}
-
-.next {
-  min-width: 88px;
-  margin-left: 16px;
+.link:hover {
+  color: #323c48;
+  border-color: #323c48;
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .active {
   background-color: #5695ed;
   color: #ffffff;
+  transition: color 0.2s, border-color 0.2s, background-color 0.2s;
 }
 
 .prev {

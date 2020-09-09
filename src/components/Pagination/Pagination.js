@@ -1,59 +1,45 @@
 import React from 'react';
-import cn from 'classnames';
 import s from './Pagination.module.css';
 
-const paginationItems = [
-  {
-    title: 'Назад',
-    additionalClass: 'prev'
-  },
-  {
-    title: '1'
-  },
-  {
-    title: '2'
-  },
-  {
-    title: '3'
-  },
-  {
-    title: '4'
-  },
-  {
-    title: '5'
-  },
-  {
-    title: '...'
-  },
-  {
-    title: '13'
-  },
-  {
-    title: 'Вперед',
-    additionalClass: 'next'
+const linkTransition = evt => {
+  evt.preventDefault();
+
+  if (evt.target.tagName !== 'A') {
+    return;
   }
-];
 
-const renderPaginationItems = () => {
-  return paginationItems.map(({ title, additionalClass }) => {
-    const setAdditionalClass =
-      additionalClass !== undefined ? s[additionalClass] : '';
-
-    return (
-      <li className={s.item} key={title}>
-        <a
-          className={cn(s.link, setAdditionalClass)}
-          href="https://github.com/stormdice"
-        >
-          {title}
-        </a>
-      </li>
-    );
-  });
+  window.history.pushState({}, 'page 2', '?pageNum=2');
+  console.log(evt.target.href);
 };
 
 const Pagination = () => {
-  return <ul className={s.pagination}>{renderPaginationItems()}</ul>;
+  return (
+    <ul className={s.pagination} onClick={linkTransition}>
+      <li className={s.item}>
+        <a className={s.link} href="/?prevPage">
+          назад
+        </a>
+      </li>
+      <li className={s.item}>
+        <a className={s.link} href="/?pageNum=1">
+          1
+        </a>
+      </li>
+      <li className={s.item}>
+        <a className={s.link} href="/?pageNum=2">
+          2
+        </a>
+      </li>
+      <li className={s.item}>
+        <span className={s.link}>...</span>
+      </li>
+      <li className={s.item}>
+        <a className={s.link} href="/?nextPage">
+          вперед
+        </a>
+      </li>
+    </ul>
+  );
 };
 
 export default Pagination;

@@ -5,13 +5,12 @@
 }
 
 .field {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 12px;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  cursor: pointer;
 }
 
 .label {
-  margin-right: 12px;
+  cursor: pointer;
 }

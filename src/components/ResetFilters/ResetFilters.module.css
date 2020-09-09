@@ -16,14 +16,17 @@
   cursor: pointer;
   user-select: none;
   outline: none;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
 }
 
 .reset:hover,
 .reset:focus {
   background-color: #323c48;
   color: white;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .reset:active {
-  opacity: 0.8;
+  transform: scale(0.98);
+  transition: transform 0.2s;
 }

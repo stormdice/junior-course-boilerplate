@@ -25,11 +25,13 @@
 
   cursor: pointer;
   user-select: none;
+  transition: border-color 0.2s, color 0.2s;
 }
 
 .input:hover + label {
   color: #323c48;
   border-color: #323c48;
+  transition: border-color 0.2s, color 0.2s;
 }
 
 .input:checked + .label {
