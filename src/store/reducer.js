@@ -41,12 +41,14 @@ const reducer = (state = initialState, action) => {
         [action.payload.fieldName]: action.payload.fieldValue
       };
     case 'RESET_FILTERS':
+      const { min, max, discount, categories } = initialState;
+
       return {
         ...state,
-        min: '',
-        max: '',
-        discount: 0,
-        categories: []
+        min,
+        max,
+        discount,
+        categories
       };
     default:
       return state;

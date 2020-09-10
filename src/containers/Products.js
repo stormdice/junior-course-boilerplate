@@ -10,7 +10,9 @@ import ProductsView from '../components/Products';
 import { minBy, maxBy } from 'csssr-school-utils';
 
 const isProductPriceInRange = (product, min, max) =>
-  max === '' ? product : product.price >= min && product.price <= max;
+  max === ''
+    ? product.price >= min
+    : product.price >= min && product.price <= max;
 
 const isProductContainsFilteredDiscount = ({ discount }, discountPercent) =>
   discountPercent === 0 || discount === discountPercent;
@@ -35,9 +37,10 @@ class Products extends Component {
   }
 
   render() {
-    const sortedProducts = this.props.products.sort(
+    const sortedProducts = [...this.props.products].sort(
       (a, b) => a.price - b.price
     );
+
     return (
       <ProductsView
         products={this.getFilteredProducts({

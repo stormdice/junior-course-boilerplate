@@ -6,10 +6,11 @@ import s from './ProductPrice.module.css';
 
 const ProductPrice = props => {
   const { price, isSubPrice } = props;
+  const unit = '₽';
 
   return (
     <div className={cn([s.price], { [s.small]: isSubPrice })}>
-      {formatMoney(price, 0, ' ', ' ')} <span className={s.unit}>&#x20bd;</span>
+      {formatMoney(price, 0, ' ', ' ')} <span className={s.unit}>{unit}</span>
     </div>
   );
 };

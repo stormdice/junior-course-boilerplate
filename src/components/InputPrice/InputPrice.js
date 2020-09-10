@@ -21,7 +21,7 @@ const InputPrice = props => {
 InputPrice.propTypes = {
   name: pt.string.isRequired,
   placeholder: pt.number.isRequired,
-  value: pt.string.isRequired,
+  value: pt.oneOfType([pt.string, pt.number]),
   handleInputChange: pt.func.isRequired
 };
 

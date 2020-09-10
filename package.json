@@ -19,7 +19,6 @@
     "build": "react-scripts build",
     "lint:js": "eslint \"src/**/*.{js, jsx}\" --cache --fix",
     "test": "react-scripts test",
-    "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
   "browserslist": [
