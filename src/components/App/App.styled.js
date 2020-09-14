@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components/macro';
+
+export const Container = styled.div`
   display: grid;
   grid-template-columns: 256px 1fr;
   column-gap: 48px;
@@ -9,4 +11,4 @@
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 40px;
-}
+`;

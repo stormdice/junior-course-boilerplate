@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import toInt from 'csssr-school-utils/lib/toInt';
 
-const getDisplayName = WrappedComponent => {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-};
+const getDisplayName = WrappedComponent =>
+  WrappedComponent.displayName || WrappedComponent.name || 'Component';
 
 const withInputValidation = HoccedComponent => {
   class withInputValidation extends Component {

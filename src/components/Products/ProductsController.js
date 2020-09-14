@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { productItems } from '../products.json';
+import { productItems } from '../../products.json';
 import {
   getProducts,
   setMinProductPrice,
   setMaxProductPrice
-} from '../store/actions';
-import ProductsView from '../components/Products';
+} from '../../store/actions';
+import ProductsPresenter from './ProductsPresenter';
 import { minBy, maxBy } from 'csssr-school-utils';
 
 const isProductPriceInRange = (product, min, max) =>
@@ -15,12 +15,14 @@ const isProductPriceInRange = (product, min, max) =>
     : product.price >= min && product.price <= max;
 
 const isProductContainsFilteredDiscount = ({ discount }, discountPercent) =>
-  discountPercent === 0 || discount === discountPercent;
+  discountPercent === 0 ||
+  discountPercent === '' ||
+  discount === discountPercent;
 
 const isProductContainsFilteredCategory = ({ category }, categories) =>
   categories.length === 0 || categories.includes(category);
 
-class Products extends Component {
+class ProductsController extends Component {
   getFilteredProducts({ products, min, max, discount, categories }) {
     return products.filter(
       product =>
@@ -42,7 +44,7 @@ class Products extends Component {
     );
 
     return (
-      <ProductsView
+      <ProductsPresenter
         products={this.getFilteredProducts({
           products: sortedProducts,
           min: this.props.min,
@@ -86,4 +88,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductsController);

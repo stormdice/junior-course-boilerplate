@@ -1,3 +1,1 @@
-import PriceRange from './PriceRange';
-
-export default PriceRange;
+export { default } from './PriceRange';

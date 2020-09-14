@@ -1,3 +1,1 @@
-import CategoryList from './CategoryList';
-
-export default CategoryList;
+export { default } from './CategoryListController';

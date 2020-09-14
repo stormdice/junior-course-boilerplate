@@ -1,19 +1,14 @@
 import React from 'react';
-import cn from 'classnames';
 import pt from 'prop-types';
 import { formatMoney } from 'csssr-school-utils';
-import s from './ProductPrice.module.css';
+import { Price, Unit } from './ProductPrice.styled';
 
-const ProductPrice = props => {
-  const { price, isSubPrice } = props;
-  const unit = '₽';
-
-  return (
-    <div className={cn([s.price], { [s.small]: isSubPrice })}>
-      {formatMoney(price, 0, ' ', ' ')} <span className={s.unit}>{unit}</span>
-    </div>
-  );
-};
+const ProductPrice = ({ price, isSubPrice }) => (
+  <Price small={isSubPrice}>
+    {formatMoney(price, 0, ' ', ' ')}
+    <Unit>₽</Unit>
+  </Price>
+);
 
 ProductPrice.propTypes = {
   price: pt.number.isRequired,

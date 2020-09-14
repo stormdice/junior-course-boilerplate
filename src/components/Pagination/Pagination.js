@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Pagination.module.css';
+import { List, ListItem, Link } from './Pagination.styled';
 
 const linkTransition = evt => {
   evt.preventDefault();
@@ -9,37 +9,34 @@ const linkTransition = evt => {
   }
 
   window.history.pushState({}, 'page 2', '?pageNum=2');
-  console.log(evt.target.href);
 };
 
-const Pagination = () => {
-  return (
-    <ul className={s.pagination} onClick={linkTransition}>
-      <li className={s.item}>
-        <a className={s.link} href="/?prevPage">
-          назад
-        </a>
-      </li>
-      <li className={s.item}>
-        <a className={s.link} href="/?pageNum=1">
-          1
-        </a>
-      </li>
-      <li className={s.item}>
-        <a className={s.link} href="/?pageNum=2">
-          2
-        </a>
-      </li>
-      <li className={s.item}>
-        <span className={s.link}>...</span>
-      </li>
-      <li className={s.item}>
-        <a className={s.link} href="/?nextPage">
-          вперед
-        </a>
-      </li>
-    </ul>
-  );
-};
+const Pagination = () => (
+  <List onClick={linkTransition}>
+    <ListItem>
+      <Link active={false} href="/?prevPage">
+        назад
+      </Link>
+    </ListItem>
+    <ListItem>
+      <Link active={true} href="/?pageNum=1">
+        1
+      </Link>
+    </ListItem>
+    <ListItem>
+      <Link active={false} href="/?pageNum=2">
+        2
+      </Link>
+    </ListItem>
+    <ListItem>
+      <Link active={false}>...</Link>
+    </ListItem>
+    <ListItem>
+      <Link active={false} href="/?nextPage">
+        вперед
+      </Link>
+    </ListItem>
+  </List>
+);
 
 export default Pagination;

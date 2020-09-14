@@ -1,49 +1,44 @@
 import React from 'react';
 import pt from 'prop-types';
-import cn from 'classnames';
 import ProductItem from 'csssr-school-product-card';
 import ProductPrice from '../ProductPrice';
-import s from './ProductsList.module.css';
+import { RatingStar } from './ProductList.styled';
+import { Container } from './ProductList.styled';
 
-const renderPrice = (price, isSubPrice = false) => {
-  return price ? <ProductPrice price={price} isSubPrice={isSubPrice} /> : '';
-};
+const renderPrice = (price, isSubPrice = false) =>
+  price ? <ProductPrice price={price} isSubPrice={isSubPrice} /> : '';
 
-const ratingComponent = ({ isFilled }) => {
-  return <div className={cn(s.star, isFilled && s.fill)} />;
-};
+const ratingComponent = ({ isFilled }) => <RatingStar filled={isFilled} />;
 
-const ProductsList = ({ products }) => {
-  const renderProducts = products.map(
-    ({
-      id,
-      isInStock,
-      img,
-      title,
-      price,
-      subPriceContent,
-      maxRating,
-      rating
-    }) => {
-      return (
-        <li key={id} data-testid="product-list-item">
-          <ProductItem
-            isInStock={isInStock}
-            img={img}
-            title={title}
-            price={renderPrice(price)}
-            subPriceContent={renderPrice(subPriceContent, true)}
-            maxRating={maxRating}
-            rating={rating}
-            ratingComponent={ratingComponent}
-          />
-        </li>
-      );
-    }
-  );
-
-  return <ul className={s.products}>{renderProducts}</ul>;
-};
+const ProductsList = ({ products }) => (
+  <Container>
+    {products.map(
+      ({
+        id,
+        isInStock,
+        img,
+        title,
+        price,
+        subPriceContent,
+        maxRating,
+        rating
+      }) => (
+        <ProductItem
+          key={id}
+          data-testid="product-list-item"
+          isInStock={isInStock}
+          img={img}
+          title={title}
+          price={renderPrice(price)}
+          subPriceContent={renderPrice(subPriceContent, true)}
+          maxRating={maxRating}
+          rating={rating}
+          ratingComponent={ratingComponent}
+        />
+      )
+    )}
+  </Container>
+);
 
 ProductsList.propTypes = {
   products: pt.array.isRequired

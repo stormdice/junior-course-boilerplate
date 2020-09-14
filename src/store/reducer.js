@@ -36,9 +36,19 @@ const reducer = (state = initialState, action) => {
         min: action.payload
       };
     case 'SET_INPUT_VALUE':
+      const { fieldName, fieldValue } = action.payload;
+
+      if (fieldName === 'min' && fieldValue > state.maxProductPrice) {
+        return state;
+      }
+
+      if (fieldName === 'discount' && fieldValue > 100) {
+        return state;
+      }
+
       return {
         ...state,
-        [action.payload.fieldName]: action.payload.fieldValue
+        [fieldName]: fieldValue
       };
     case 'RESET_FILTERS':
       const { min, max, discount, categories } = initialState;

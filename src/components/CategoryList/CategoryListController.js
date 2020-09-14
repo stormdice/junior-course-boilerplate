@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeCategory } from '../store/actions';
-import CategoryListView from '../components/CategoryList';
+import { changeCategory } from '../../store/actions';
+import CategoryListPresenter from './CategoryListPresenter';
 
-class CategoryList extends Component {
+class CategoryListController extends Component {
   addCategoriesQueryToUrl() {
     const url = new URL(window.location.href);
 
@@ -20,14 +20,12 @@ class CategoryList extends Component {
     });
   };
 
-  getChangeHandlerForCategories = fieldName => {
-    return isChecked => {
-      const uniqueCategories = new Set(this.props.categories);
-      const method = isChecked ? 'add' : 'delete';
-      uniqueCategories[method](fieldName);
+  getChangeHandler = fieldName => isChecked => {
+    const uniqueCategories = new Set(this.props.categories);
+    const method = isChecked ? 'add' : 'delete';
+    uniqueCategories[method](fieldName);
 
-      this.props.changeCategory([...uniqueCategories]);
-    };
+    this.props.changeCategory([...uniqueCategories]);
   };
 
   componentDidMount() {
@@ -50,24 +48,23 @@ class CategoryList extends Component {
     const { categories } = this.props;
 
     return (
-      <CategoryListView
-        handleCategoryChange={this.getChangeHandlerForCategories}
+      <CategoryListPresenter
+        getCategoryChangeHandler={this.getChangeHandler}
         categories={categories}
       />
     );
   }
 }
 
-const mapStateToProps = ({ categories }) => {
-  return {
-    categories
-  };
-};
+const mapStateToProps = ({ categories }) => ({
+  categories
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeCategory: categories => dispatch(changeCategory(categories))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  changeCategory: categories => dispatch(changeCategory(categories))
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoryList);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CategoryListController);

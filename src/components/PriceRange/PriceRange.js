@@ -1,37 +1,19 @@
 import React from 'react';
-import { InputMin, InputMax } from '../Inputs';
-import s from './PriceRange.module.css';
+import InputMin from '../Inputs/InputMin';
+import InputMax from '../Inputs/InputMax';
+import { Container, InputContainer, Label } from './PriceRange.styled';
 
-const PriceRange = props => {
-  const {
-    handleInputChange,
-    min,
-    max,
-    minProductPrice,
-    maxProductPrice
-  } = props;
-  return (
-    <div className={s.container}>
-      <label className={s.field}>
-        <span className={s.label}>от</span>
-        <InputMin
-          name="min"
-          placeholder={minProductPrice}
-          value={min}
-          handleInputChange={handleInputChange('min')}
-        />
-      </label>
-      <label className={s.field}>
-        <span className={s.label}>до</span>
-        <InputMax
-          name="max"
-          placeholder={maxProductPrice}
-          value={max}
-          handleInputChange={handleInputChange('max')}
-        />
-      </label>
-    </div>
-  );
-};
+const PriceRange = () => (
+  <Container>
+    <InputContainer>
+      <Label>от</Label>
+      <InputMin name="min" />
+    </InputContainer>
+    <InputContainer>
+      <Label>до</Label>
+      <InputMax name="max" />
+    </InputContainer>
+  </Container>
+);
 
 export default PriceRange;

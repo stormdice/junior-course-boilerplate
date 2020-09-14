@@ -1,4 +1,6 @@
-.input {
+import styled from 'styled-components/macro';
+
+export const Input = styled.input`
   position: absolute;
   width: 1px;
   height: 1px;
@@ -8,9 +10,21 @@
   clip: rect(0 0 0 0);
   overflow: hidden;
   white-space: nowrap;
-}
 
-.label {
+  &:hover + label {
+    color: #323c48;
+    border-color: #323c48;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  &:checked + label {
+    background-color: #323c48;
+    border-color: #323c48;
+    color: #ffffff;
+  }
+`;
+
+export const Label = styled.label`
   display: inline-block;
   vertical-align: top;
   box-sizing: border-box;
@@ -26,16 +40,4 @@
   cursor: pointer;
   user-select: none;
   transition: border-color 0.2s, color 0.2s;
-}
-
-.input:hover + label {
-  color: #323c48;
-  border-color: #323c48;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.input:checked + .label {
-  background-color: #323c48;
-  border-color: #323c48;
-  color: #ffffff;
-}
+`;

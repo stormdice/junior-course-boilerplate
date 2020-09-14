@@ -1,3 +1,1 @@
-import Discount from './Discount';
-
-export default Discount;
+export { default } from './DiscountController';
