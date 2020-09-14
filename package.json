@@ -10,12 +10,17 @@
     "react": "^16.12.0",
     "react-addons-shallow-compare": "^15.6.2",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.2.0"
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.5",
+    "styled-components": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint:js": "eslint \"src/**/*.{js, jsx}\" --cache --fix"
+    "lint:js": "eslint \"src/**/*.{js, jsx}\" --cache --fix",
+    "test": "react-scripts test",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     ">0.2%",
@@ -24,7 +29,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.3",
+    "@testing-library/react": "^10.4.8",
+    "babel-plugin-styled-components": "^1.11.1",
     "eslint-plugin-prettier": "3.1.2",
+    "gh-pages": "^3.1.0",
     "husky": "3.1.0",
     "lint-staged": "9.5.0",
     "prettier": "1.19.1"
@@ -43,5 +52,6 @@
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  }
+  },
+  "homepage": "https://stormdice.github.io/junior-course-boilerplate/"
 }

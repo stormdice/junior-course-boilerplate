@@ -1,32 +1,24 @@
 import React from 'react';
 import pt from 'prop-types';
-import s from './CategoryCheckbox.module.css';
+import { Input, Label } from './CategoryCheckbox.styled';
 
-const CategoryCheckbox = ({
-  name,
-  title,
-  handleCategoryChange,
-  categories
-}) => {
+const CategoryCheckbox = ({ name, title, onChange, categories }) => {
   const handleChange = ({ target }) => {
-    handleCategoryChange(target.checked);
+    onChange(target.checked);
   };
 
   const isChecked = categories.some(category => category === name);
 
   return (
     <>
-      <input
-        className={s.input}
+      <Input
         type="checkbox"
         id={name}
         name={name}
         onChange={handleChange}
         checked={isChecked}
       />
-      <label className={s.label} htmlFor={name}>
-        {title}
-      </label>
+      <Label htmlFor={name}>{title}</Label>
     </>
   );
 };
@@ -34,7 +26,7 @@ const CategoryCheckbox = ({
 CategoryCheckbox.propTypes = {
   name: pt.string.isRequired,
   title: pt.string.isRequired,
-  handleCategoryChange: pt.func.isRequired
+  onChange: pt.func.isRequired
 };
 
 export default CategoryCheckbox;

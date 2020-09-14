@@ -1,38 +1,25 @@
 import React from 'react';
-import LogRender from '../LogRender';
 import PriceRange from '../PriceRange';
 import CategoryList from '../CategoryList';
-import { InputDiscount } from '../Inputs';
+import Discount from '../Discount';
 import ResetFilters from '../ResetFilters';
-import s from './FiltersForm.module.css';
+import { Form, Field, Title } from './FiltersForm.styled';
 
-export default class FiltersForm extends LogRender {
-  render() {
-    const {
-      handleInputChange,
-      handleCategoryChange,
-      handleResetFilters
-    } = this.props;
+const FiltersForm = () => (
+  <Form>
+    <Field>
+      <Title>Цена</Title>
+      <PriceRange />
+    </Field>
+    <Field>
+      <Discount />
+    </Field>
+    <Field>
+      <Title>Категории</Title>
+      <CategoryList />
+    </Field>
+    <ResetFilters>Сбросить фильтры</ResetFilters>
+  </Form>
+);
 
-    return (
-      <form className={s.filter}>
-        <fieldset className={s.fieldset}>
-          <legend className={s.title}>Цена</legend>
-          <PriceRange handleInputChange={handleInputChange} />
-        </fieldset>
-        <fieldset className={s.fieldset}>
-          <InputDiscount
-            title="Скидка"
-            name="discount"
-            handleInputChange={handleInputChange('discount')}
-          />
-        </fieldset>
-        <fieldset className={s.fieldset}>
-          <legend className={s.title}>Категории</legend>
-          <CategoryList handleCategoryChange={handleCategoryChange} />
-        </fieldset>
-        <ResetFilters handleResetFilters={handleResetFilters} />
-      </form>
-    );
-  }
-}
+export default FiltersForm;

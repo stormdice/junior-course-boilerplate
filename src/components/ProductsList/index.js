@@ -1,3 +1,3 @@
-import ProductsList from './ProductsList';
+import ProductsList from './ProductListController';
 
 export default ProductsList;

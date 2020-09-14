@@ -1,3 +1,3 @@
-import ResetFilters from './ResetFilters';
+import ResetFilters from './ResetFiltersController';
 
 export default ResetFilters;

@@ -1,3 +1,1 @@
-import CategoryLabel from './CategoryLabel';
-
-export default CategoryLabel;
+export { default } from './CategoryCheckbox';
