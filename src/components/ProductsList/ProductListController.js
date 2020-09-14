@@ -6,7 +6,7 @@ import {
   setMinProductPrice,
   setMaxProductPrice
 } from '../../store/actions';
-import ProductsPresenter from './ProductsPresenter';
+import ProductListPresenter from './ProductsListPresenter';
 import { minBy, maxBy } from 'csssr-school-utils';
 
 const isProductPriceInRange = (product, min, max) =>
@@ -44,7 +44,7 @@ class ProductsController extends Component {
     );
 
     return (
-      <ProductsPresenter
+      <ProductListPresenter
         products={this.getFilteredProducts({
           products: sortedProducts,
           min: this.props.min,

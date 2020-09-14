@@ -3,10 +3,10 @@ import ProductsList from '../ProductsList';
 import Pagination from '../Pagination';
 import AppTitle from '../AppTitle';
 
-const Products = ({ products }) => (
+const Products = () => (
   <div>
     <AppTitle />
-    <ProductsList products={products} />
+    <ProductsList />
     <Pagination />
   </div>
 );

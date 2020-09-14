@@ -1,1 +1,1 @@
-export { default } from './ProductsController';
+export { default } from './Products';
