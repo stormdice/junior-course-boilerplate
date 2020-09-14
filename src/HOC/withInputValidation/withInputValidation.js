@@ -9,16 +9,11 @@ const withInputValidation = HoccedComponent => {
     handleChange = ({ target }) => {
       const value = toInt(target.value) === 0 ? '' : toInt(target.value);
 
-      this.props.handleInputChange(value);
+      this.props.changeHandler(value);
     };
 
     render() {
-      return (
-        <HoccedComponent
-          {...this.props}
-          handleInputChange={this.handleChange}
-        />
-      );
+      return <HoccedComponent {...this.props} onChange={this.handleChange} />;
     }
   }
 

@@ -1,13 +1,9 @@
 import React from 'react';
-import DiscountComponent from 'csssr-school-input-discount';
+import Discount from 'csssr-school-input-discount';
+import withInputValidation from '../../HOC/withInputValidation';
 
-const DiscountPresenter = ({ title, name, handleInputChange, discount }) => (
-  <DiscountComponent
-    title={title}
-    name={name}
-    value={discount}
-    onChange={handleInputChange}
-  />
+const DiscountPresenter = ({ title, name, onChange, discount }) => (
+  <Discount title={title} name={name} value={discount} onChange={onChange} />
 );
 
-export default DiscountPresenter;
+export default withInputValidation(DiscountPresenter);

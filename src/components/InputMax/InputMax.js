@@ -1,9 +1,16 @@
 import { connect } from 'react-redux';
-import withInputValidation from '../../HOC/withInputValidation';
-import InputPrice from '../InputPrice';
+import React from 'react';
+import InputNumber from '../InputNumber';
 import { setInputValue } from '../../store/actions';
 
-const InputMax = withInputValidation(InputPrice);
+const InputMax = ({ placeholder, value, changeHandler }) => (
+  <InputNumber
+    name="max"
+    placeholder={placeholder}
+    value={value}
+    changeHandler={changeHandler}
+  />
+);
 
 const mapStateToProps = ({ max, maxProductPrice }) => {
   return {
@@ -14,7 +21,7 @@ const mapStateToProps = ({ max, maxProductPrice }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleInputChange: fieldValue => dispatch(setInputValue('max', fieldValue))
+    changeHandler: fieldValue => dispatch(setInputValue('max', fieldValue))
   };
 };
 

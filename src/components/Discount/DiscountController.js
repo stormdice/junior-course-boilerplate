@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import InputDiscount from '../Inputs/InputDiscount';
+import DiscountPresenter from './DiscountPresenter';
 import { setInputValue } from '../../store/actions';
 
-const DiscountController = ({ handleInputChange, discount }) => (
-  <InputDiscount
+const DiscountController = ({ changeHandler, discount }) => (
+  <DiscountPresenter
     title="Скидка"
     name="discount"
-    handleInputChange={handleInputChange}
+    changeHandler={changeHandler}
     discount={discount}
   />
 );
@@ -16,8 +16,7 @@ const mapStateToProps = ({ discount }) => ({ discount });
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleInputChange: fieldValue =>
-      dispatch(setInputValue('discount', fieldValue))
+    changeHandler: fieldValue => dispatch(setInputValue('discount', fieldValue))
   };
 };
 

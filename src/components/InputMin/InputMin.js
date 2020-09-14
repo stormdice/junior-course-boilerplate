@@ -1,9 +1,16 @@
+import React from 'react';
 import { connect } from 'react-redux';
-import withInputValidation from '../../HOC/withInputValidation';
-import InputPrice from '../InputPrice';
+import InputNumber from '../InputNumber';
 import { setInputValue } from '../../store/actions';
 
-const InputMin = withInputValidation(InputPrice);
+const InputMin = ({ placeholder, value, changeHandler }) => (
+  <InputNumber
+    name="min"
+    placeholder={placeholder}
+    value={value}
+    changeHandler={changeHandler}
+  />
+);
 
 const mapStateToProps = ({ min, minProductPrice }) => {
   return {
@@ -14,7 +21,7 @@ const mapStateToProps = ({ min, minProductPrice }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleInputChange: fieldValue => dispatch(setInputValue('min', fieldValue))
+    changeHandler: fieldValue => dispatch(setInputValue('min', fieldValue))
   };
 };
 
