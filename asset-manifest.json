@@ -1,25 +1,23 @@
 {
   "files": {
-    "main.css": "/junior-course-boilerplate/static/css/main.4a4b2f80.chunk.css",
-    "main.js": "/junior-course-boilerplate/static/js/main.3d253d2c.chunk.js",
-    "main.js.map": "/junior-course-boilerplate/static/js/main.3d253d2c.chunk.js.map",
+    "main.js": "/junior-course-boilerplate/static/js/main.8dc928d5.chunk.js",
+    "main.js.map": "/junior-course-boilerplate/static/js/main.8dc928d5.chunk.js.map",
     "runtime-main.js": "/junior-course-boilerplate/static/js/runtime-main.96941667.js",
     "runtime-main.js.map": "/junior-course-boilerplate/static/js/runtime-main.96941667.js.map",
     "static/css/2.86ff3536.chunk.css": "/junior-course-boilerplate/static/css/2.86ff3536.chunk.css",
-    "static/js/2.710a2717.chunk.js": "/junior-course-boilerplate/static/js/2.710a2717.chunk.js",
-    "static/js/2.710a2717.chunk.js.map": "/junior-course-boilerplate/static/js/2.710a2717.chunk.js.map",
+    "static/js/2.860f7971.chunk.js": "/junior-course-boilerplate/static/js/2.860f7971.chunk.js",
+    "static/js/2.860f7971.chunk.js.map": "/junior-course-boilerplate/static/js/2.860f7971.chunk.js.map",
     "index.html": "/junior-course-boilerplate/index.html",
-    "precache-manifest.b4227245022759ee7595f52c72fb6ffb.js": "/junior-course-boilerplate/precache-manifest.b4227245022759ee7595f52c72fb6ffb.js",
+    "precache-manifest.331858496c6f9779721cafef518c1067.js": "/junior-course-boilerplate/precache-manifest.331858496c6f9779721cafef518c1067.js",
     "service-worker.js": "/junior-course-boilerplate/service-worker.js",
     "static/css/2.86ff3536.chunk.css.map": "/junior-course-boilerplate/static/css/2.86ff3536.chunk.css.map",
-    "static/css/main.4a4b2f80.chunk.css.map": "/junior-course-boilerplate/static/css/main.4a4b2f80.chunk.css.map",
-    "static/media/ProductsList.module.css": "/junior-course-boilerplate/static/media/star-filled.63c63076.svg"
+    "static/media/star-empty.svg": "/junior-course-boilerplate/static/media/star-empty.d37f94e9.svg",
+    "static/media/star-filled.svg": "/junior-course-boilerplate/static/media/star-filled.63c63076.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.96941667.js",
     "static/css/2.86ff3536.chunk.css",
-    "static/js/2.710a2717.chunk.js",
-    "static/css/main.4a4b2f80.chunk.css",
-    "static/js/main.3d253d2c.chunk.js"
+    "static/js/2.860f7971.chunk.js",
+    "static/js/main.8dc928d5.chunk.js"
   ]
 }
