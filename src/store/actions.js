@@ -42,11 +42,21 @@ const resetFilters = () => {
   };
 };
 
+const pushState = url => {
+  window.history.pushState({}, `page + ${url}`, `${url}`);
+
+  return {
+    type: 'SET_URL',
+    payload: url
+  };
+};
+
 export {
   getProducts,
   setMinProductPrice,
   setMaxProductPrice,
   changeCategory,
   resetFilters,
-  setInputValue
+  setInputValue,
+  pushState
 };

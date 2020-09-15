@@ -5,7 +5,10 @@ const initialState = {
   max: '',
   maxProductPrice: 0,
   discount: 0,
-  categories: []
+  categories: [],
+  routing: {
+    path: '/'
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -59,6 +62,13 @@ const reducer = (state = initialState, action) => {
         max,
         discount,
         categories
+      };
+    case 'SET_URL':
+      return {
+        ...state,
+        routing: {
+          path: action.payload
+        }
       };
     default:
       return state;
