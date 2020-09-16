@@ -1,40 +1,27 @@
 import React from 'react';
-import { List, ListItem, Link } from './Pagination.styled';
-
-const linkTransition = evt => {
-  evt.preventDefault();
-
-  if (evt.target.tagName !== 'A') {
-    return;
-  }
-
-  window.history.pushState({}, 'page 2', '?pageNum=2');
-};
+import { List, ListItem } from './Pagination.styled';
+import PaginationLink from '../PaginationLink';
 
 const Pagination = () => (
-  <List onClick={linkTransition}>
+  <List>
     <ListItem>
-      <Link active={false} href="/?prevPage">
-        назад
-      </Link>
+      <PaginationLink active={false}>назад</PaginationLink>
     </ListItem>
     <ListItem>
-      <Link active={true} href="/?pageNum=1">
+      <PaginationLink active={true} href="/">
         1
-      </Link>
+      </PaginationLink>
     </ListItem>
     <ListItem>
-      <Link active={false} href="/?pageNum=2">
+      <PaginationLink active={false} href="/?pageNum=2">
         2
-      </Link>
+      </PaginationLink>
     </ListItem>
     <ListItem>
-      <Link active={false}>...</Link>
+      <PaginationLink active={false}>...</PaginationLink>
     </ListItem>
     <ListItem>
-      <Link active={false} href="/?nextPage">
-        вперед
-      </Link>
+      <PaginationLink active={false}>вперед</PaginationLink>
     </ListItem>
   </List>
 );
