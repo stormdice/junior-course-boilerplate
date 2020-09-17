@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/junior-course-boilerplate/static/js/main.8dc928d5.chunk.js",
-    "main.js.map": "/junior-course-boilerplate/static/js/main.8dc928d5.chunk.js.map",
+    "main.js": "/junior-course-boilerplate/static/js/main.fdb06ae2.chunk.js",
+    "main.js.map": "/junior-course-boilerplate/static/js/main.fdb06ae2.chunk.js.map",
     "runtime-main.js": "/junior-course-boilerplate/static/js/runtime-main.96941667.js",
     "runtime-main.js.map": "/junior-course-boilerplate/static/js/runtime-main.96941667.js.map",
     "static/css/2.86ff3536.chunk.css": "/junior-course-boilerplate/static/css/2.86ff3536.chunk.css",
     "static/js/2.860f7971.chunk.js": "/junior-course-boilerplate/static/js/2.860f7971.chunk.js",
     "static/js/2.860f7971.chunk.js.map": "/junior-course-boilerplate/static/js/2.860f7971.chunk.js.map",
     "index.html": "/junior-course-boilerplate/index.html",
-    "precache-manifest.331858496c6f9779721cafef518c1067.js": "/junior-course-boilerplate/precache-manifest.331858496c6f9779721cafef518c1067.js",
+    "precache-manifest.3f46ea73083c4a260f37e376fc87b18d.js": "/junior-course-boilerplate/precache-manifest.3f46ea73083c4a260f37e376fc87b18d.js",
     "service-worker.js": "/junior-course-boilerplate/service-worker.js",
     "static/css/2.86ff3536.chunk.css.map": "/junior-course-boilerplate/static/css/2.86ff3536.chunk.css.map",
     "static/media/star-empty.svg": "/junior-course-boilerplate/static/media/star-empty.d37f94e9.svg",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.96941667.js",
     "static/css/2.86ff3536.chunk.css",
     "static/js/2.860f7971.chunk.js",
-    "static/js/main.8dc928d5.chunk.js"
+    "static/js/main.fdb06ae2.chunk.js"
   ]
 }

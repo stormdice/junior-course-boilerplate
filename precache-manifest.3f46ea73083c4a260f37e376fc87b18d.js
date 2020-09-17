@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "422dc887f318f8c05bf07be6a5deeaf2",
+    "revision": "4efc65091b2665c8ac1a94f05c3854a9",
     "url": "/junior-course-boilerplate/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/junior-course-boilerplate/static/js/2.860f7971.chunk.js"
   },
   {
-    "revision": "3785f5a49ba1d77743c7",
-    "url": "/junior-course-boilerplate/static/js/main.8dc928d5.chunk.js"
+    "revision": "8714c628a290cd1d185e",
+    "url": "/junior-course-boilerplate/static/js/main.fdb06ae2.chunk.js"
   },
   {
     "revision": "35f03c58bfa7a44bc7bf",
