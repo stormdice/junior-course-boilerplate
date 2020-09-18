@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import InputNumber from '../InputNumber';
-import { setInputValue } from '../../store/actions';
+import { setInputValue } from '../../state/ducks/filter/actions';
 
 const InputMin = ({ placeholder, value, changeHandler }) => (
   <InputNumber
@@ -12,7 +12,7 @@ const InputMin = ({ placeholder, value, changeHandler }) => (
   />
 );
 
-const mapStateToProps = ({ min, minProductPrice }) => {
+const mapStateToProps = ({ filter: { min, minProductPrice } }) => {
   return {
     value: min,
     placeholder: minProductPrice

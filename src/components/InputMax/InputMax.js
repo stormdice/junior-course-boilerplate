@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import InputNumber from '../InputNumber';
-import { setInputValue } from '../../store/actions';
+import { setInputValue } from '../../state/ducks/filter/actions';
 
 const InputMax = ({ placeholder, value, changeHandler }) => (
   <InputNumber
@@ -12,7 +12,7 @@ const InputMax = ({ placeholder, value, changeHandler }) => (
   />
 );
 
-const mapStateToProps = ({ max, maxProductPrice }) => {
+const mapStateToProps = ({ filter: { max, maxProductPrice } }) => {
   return {
     value: max,
     placeholder: maxProductPrice

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DiscountPresenter from './DiscountPresenter';
-import { setInputValue } from '../../store/actions';
+import { setInputValue } from '../../state/ducks/filter/actions';
 
 const DiscountController = ({ changeHandler, discount }) => (
   <DiscountPresenter
@@ -12,7 +12,7 @@ const DiscountController = ({ changeHandler, discount }) => (
   />
 );
 
-const mapStateToProps = ({ discount }) => ({ discount });
+const mapStateToProps = ({ filter: { discount } }) => ({ discount });
 
 const mapDispatchToProps = dispatch => {
   return {

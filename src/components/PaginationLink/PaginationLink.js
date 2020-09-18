@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { pushState } from '../../store/actions';
+import { pushState } from '../../state/ducks/router/actions';
 import { Link } from './PaginationLink.styled';
 
 class PaginationLink extends React.Component {

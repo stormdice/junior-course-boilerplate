@@ -5,7 +5,7 @@ import {
   getProducts,
   setMinProductPrice,
   setMaxProductPrice
-} from '../../store/actions';
+} from '../../state/ducks/filter/actions';
 import ProductListPresenter from './ProductsListPresenter';
 import { minBy, maxBy } from 'csssr-school-utils';
 
@@ -58,13 +58,15 @@ class ProductsController extends Component {
 }
 
 const mapStateToProps = ({
-  products,
-  setMinProductPrice,
-  setMaxProductPrice,
-  min,
-  max,
-  discount,
-  categories
+  filter: {
+    products,
+    setMinProductPrice,
+    setMaxProductPrice,
+    min,
+    max,
+    discount,
+    categories
+  }
 }) => {
   return {
     products,

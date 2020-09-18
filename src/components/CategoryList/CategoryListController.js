@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeCategory } from '../../store/actions';
+import { changeCategory } from '../../state/ducks/filter/actions';
 import CategoryListPresenter from './CategoryListPresenter';
 
 class CategoryListController extends Component {
@@ -56,13 +56,11 @@ class CategoryListController extends Component {
   }
 }
 
-const mapStateToProps = ({ categories }) => ({
+const mapStateToProps = ({ filter: { categories } }) => ({
   categories
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeCategory: categories => dispatch(changeCategory(categories))
-});
+const mapDispatchToProps = { changeCategory };
 
 export default connect(
   mapStateToProps,

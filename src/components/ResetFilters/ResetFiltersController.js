@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { resetFilters } from '../../store/actions';
+import { resetFilters } from '../../state/ducks/filter/actions';
 import { ResetFilters } from './ResetFilters.styled';
 
 const ResetFiltersController = ({ resetFilters, ...restProps }) => (

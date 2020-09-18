@@ -1,3 +1,5 @@
+import * as types from './types';
+
 const initialState = {
   products: [],
   min: '',
@@ -5,40 +7,32 @@ const initialState = {
   max: '',
   maxProductPrice: 0,
   discount: 0,
-  categories: [],
-  routing: {
-    path: '/'
-  }
+  categories: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'GET_PRODUCTS':
+    case types.GET_PRODUCTS:
       return {
         ...state,
         products: action.payload
       };
-    case 'SET_MIN_PRODUCT_PRICE':
+    case types.SET_MIN_PRODUCT_PRICE:
       return {
         ...state,
         minProductPrice: action.payload
       };
-    case 'SET_MAX_PRODUCT_PRICE':
+    case types.SET_MAX_PRODUCT_PRICE:
       return {
         ...state,
         maxProductPrice: action.payload
       };
-    case 'CHANGE_CATEGORIES':
+    case types.CHANGE_CATEGORIES:
       return {
         ...state,
         categories: action.payload
       };
-    case 'SET_MIN_PRICE_INPUT_VALUE':
-      return {
-        ...state,
-        min: action.payload
-      };
-    case 'SET_INPUT_VALUE':
+    case types.SET_INPUT_VALUE:
       const { fieldName, fieldValue } = action.payload;
 
       if (fieldName === 'min' && fieldValue > state.maxProductPrice) {
@@ -53,7 +47,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         [fieldName]: fieldValue
       };
-    case 'RESET_FILTERS':
+    case types.RESET_FILTERS:
       const { min, max, discount, categories } = initialState;
 
       return {
@@ -62,13 +56,6 @@ const reducer = (state = initialState, action) => {
         max,
         discount,
         categories
-      };
-    case 'SET_URL':
-      return {
-        ...state,
-        routing: {
-          path: action.payload
-        }
       };
     default:
       return state;
