@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeCategory } from '../../state/ducks/filter/actions';
+import {
+  changeCategory,
+  setCategoriesQueryFromUrl
+} from '../../state/ducks/filter/actions';
 import CategoryListPresenter from './CategoryListPresenter';
 
 class CategoryListController extends Component {
@@ -8,16 +11,14 @@ class CategoryListController extends Component {
     const url = new URL(window.location.href);
 
     url.searchParams.set('categories', this.props.categories);
-    window.history.pushState(null, null, url);
+    window.history.pushState({}, 'categories', url);
   }
 
   parseCategoriesQueryFromUrl = () => {
     const url = new URL(window.location.href);
     const categories = url.searchParams.get('categories');
 
-    this.setState({
-      categories: categories ? categories.split(',') : []
-    });
+    this.props.setCategoriesQueryFromUrl(categories);
   };
 
   getChangeHandler = fieldName => isChecked => {
@@ -34,7 +35,7 @@ class CategoryListController extends Component {
     window.addEventListener('popstate', this.parseCategoriesQueryFromUrl);
   }
 
-  componentDidUpdate(prevProps, _prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.categories !== this.props.categories) {
       this.addCategoriesQueryToUrl();
     }
@@ -60,7 +61,10 @@ const mapStateToProps = ({ filter: { categories } }) => ({
   categories
 });
 
-const mapDispatchToProps = { changeCategory };
+const mapDispatchToProps = {
+  changeCategory,
+  setCategoriesQueryFromUrl
+};
 
 export default connect(
   mapStateToProps,

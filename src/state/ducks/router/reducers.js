@@ -1,15 +1,16 @@
 import * as types from './types';
 
 const initialState = {
-  path: '/'
+  pageNum: ''
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case types.SET_URL:
+      const pageNum = action.payload.searchParams.get('pageNum');
+
       return {
-        ...state,
-        path: action.payload
+        pageNum
       };
     default:
       return state;

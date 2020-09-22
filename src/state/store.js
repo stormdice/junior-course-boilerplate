@@ -1,14 +1,9 @@
-import { createStore, combineReducers } from 'redux';
-import filter from './ducks/filter';
-import router from './ducks/router';
+import { configureStore } from '@reduxjs/toolkit';
+import { filterReducer, routerReducer } from './ducks';
 
-const appReducer = combineReducers({ filter, router });
-
-const configureStore = () => {
-  return createStore(
-    appReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
-};
-
-export default configureStore;
+export default configureStore({
+  reducer: {
+    filter: filterReducer,
+    router: routerReducer
+  }
+});

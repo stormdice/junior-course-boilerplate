@@ -43,3 +43,10 @@ export const resetFilters = () => {
     type: types.RESET_FILTERS
   };
 };
+
+export const setCategoriesQueryFromUrl = categories => {
+  return {
+    type: types.SET_CATEGORIES_QUERY_FROM_URL,
+    payload: categories
+  };
+};

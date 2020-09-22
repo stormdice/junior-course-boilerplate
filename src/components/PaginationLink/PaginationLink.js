@@ -6,7 +6,10 @@ import { Link } from './PaginationLink.styled';
 class PaginationLink extends React.Component {
   handleLinkClick = evt => {
     evt.preventDefault();
-    this.props.pushState(this.props.href);
+    const url = new URL(window.location.href);
+
+    url.searchParams.set('pageNum', this.props.href);
+    this.props.pushState(url);
   };
 
   render() {

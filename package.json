@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.4.0",
     "classnames": "2.2.6",
     "csssr-school-input-discount": "git+ssh://git@github.com/CSSSR-School/junior-course-input-discount.git",
     "csssr-school-product-card": "git+ssh://git@github.com/CSSSR-School/junior-course-product-card.git",

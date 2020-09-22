@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 
 class Route extends React.Component {
   render() {
-    const path = this.props.path;
-
+    const path = this.props.pageNum;
+    console.log(path);
     if (path !== this.props.path) {
-      console.log('не равен');
       return false;
     }
 
@@ -14,6 +13,6 @@ class Route extends React.Component {
   }
 }
 
-const mapStateToProps = ({ router: { path } }) => ({ path });
+const mapStateToProps = ({ router: { pageNum } }) => ({ pageNum });
 
 export default connect(mapStateToProps)(Route);

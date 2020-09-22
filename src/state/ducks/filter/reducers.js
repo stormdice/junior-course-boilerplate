@@ -57,6 +57,13 @@ const reducer = (state = initialState, action) => {
         discount,
         categories
       };
+    case types.SET_CATEGORIES_QUERY_FROM_URL:
+      const categoriesFromUrl = action.payload;
+
+      return {
+        ...state,
+        categories: categoriesFromUrl ? categoriesFromUrl.split(',') : []
+      };
     default:
       return state;
   }

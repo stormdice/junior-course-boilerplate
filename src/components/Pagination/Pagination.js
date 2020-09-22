@@ -8,12 +8,12 @@ const Pagination = () => (
       <PaginationLink active={false}>назад</PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={true} href="/">
+      <PaginationLink active={true} href="1">
         1
       </PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={false} href="/?pageNum=2">
+      <PaginationLink active={false} href="2">
         2
       </PaginationLink>
     </ListItem>
