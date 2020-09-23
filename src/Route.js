@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 class Route extends React.Component {
   render() {
     const path = this.props.pageNum;
-    console.log(path);
+
     if (path !== this.props.path) {
       return false;
     }

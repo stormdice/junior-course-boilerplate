@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  changeCategory,
-  setCategoriesQueryFromUrl
-} from '../../state/ducks/filter/actions';
+import { filterActions, filterSelectors } from '../../store/filter';
 import CategoryListPresenter from './CategoryListPresenter';
 
 class CategoryListController extends Component {
@@ -57,13 +54,13 @@ class CategoryListController extends Component {
   }
 }
 
-const mapStateToProps = ({ filter: { categories } }) => ({
-  categories
+const mapStateToProps = state => ({
+  categories: filterSelectors.getFilterCategories(state)
 });
 
 const mapDispatchToProps = {
-  changeCategory,
-  setCategoriesQueryFromUrl
+  changeCategory: filterActions.changeCategory,
+  setCategoriesQueryFromUrl: filterActions.setCategoriesQueryFromUrl
 };
 
 export default connect(

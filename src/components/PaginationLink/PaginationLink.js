@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { pushState } from '../../state/ducks/router/actions';
+import { routerActions } from '../../store/router';
 import { Link } from './PaginationLink.styled';
 
 class PaginationLink extends React.Component {
@@ -23,7 +23,7 @@ class PaginationLink extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    pushState: url => dispatch(pushState(url))
+    pushState: url => dispatch(routerActions.pushState(url))
   };
 };
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { resetFilters } from '../../state/ducks/filter/actions';
+import { filterActions } from '../../store/filter';
 import { ResetFilters } from './ResetFilters.styled';
 
 const ResetFiltersController = ({ resetFilters, ...restProps }) => (
@@ -8,7 +8,7 @@ const ResetFiltersController = ({ resetFilters, ...restProps }) => (
 );
 
 const mapDispatchToProps = {
-  resetFilters
+  resetFilters: filterActions.resetFilters
 };
 
 export default connect(null, mapDispatchToProps)(ResetFiltersController);

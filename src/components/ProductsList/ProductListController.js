@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { productItems } from '../../products.json';
-import {
-  getProducts,
-  setMinProductPrice,
-  setMaxProductPrice
-} from '../../state/ducks/filter/actions';
+import { filterActions } from '../../store/filter';
 import ProductListPresenter from './ProductsListPresenter';
 import { minBy, maxBy } from 'csssr-school-utils';
 
@@ -84,9 +80,11 @@ const mapDispatchToProps = dispatch => {
   const maxPrice = maxBy(product => product.price, productItems).price;
 
   return {
-    getProducts: () => dispatch(getProducts(productItems)),
-    setMinProductPrice: () => dispatch(setMinProductPrice(minPrice)),
-    setMaxProductPrice: () => dispatch(setMaxProductPrice(maxPrice))
+    getProducts: () => dispatch(filterActions.getProducts(productItems)),
+    setMinProductPrice: () =>
+      dispatch(filterActions.setMinProductPrice(minPrice)),
+    setMaxProductPrice: () =>
+      dispatch(filterActions.setMaxProductPrice(maxPrice))
   };
 };
 

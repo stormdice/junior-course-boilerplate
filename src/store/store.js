@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { filterReducer, routerReducer } from './ducks';
+import filterReducer from './filter';
+import routerReducer from './router';
 
 export default configureStore({
   reducer: {
