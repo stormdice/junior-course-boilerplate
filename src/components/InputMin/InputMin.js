@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import InputNumber from '../InputNumber';
-import { filterActions } from '../../store/filter';
+import { filterActions, filterSelectors } from '../../store/filter';
+
+const { setInputValue } = filterActions;
+const { selectFilterMinValue, selectFilterMinProductPrice } = filterSelectors;
 
 const InputMin = ({ placeholder, value, changeHandler }) => (
   <InputNumber
@@ -12,18 +15,13 @@ const InputMin = ({ placeholder, value, changeHandler }) => (
   />
 );
 
-const mapStateToProps = ({ filter: { min, minProductPrice } }) => {
-  return {
-    value: min,
-    placeholder: minProductPrice
-  };
-};
+const mapStateToProps = state => ({
+  value: selectFilterMinValue(state),
+  placeholder: selectFilterMinProductPrice(state)
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeHandler: fieldValue =>
-      dispatch(filterActions.setInputValue('min', fieldValue))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  changeHandler: fieldValue => dispatch(setInputValue('min', fieldValue))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputMin);

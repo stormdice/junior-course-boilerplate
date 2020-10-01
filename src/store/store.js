@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import filterReducer from './filter';
-import routerReducer from './router';
+import filter from './filter';
+import router from './router';
 
 export default configureStore({
   reducer: {
-    filter: filterReducer,
-    router: routerReducer
+    filter,
+    router
   }
 });

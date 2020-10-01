@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { filterActions, filterSelectors } from '../../store/filter';
 import CategoryListPresenter from './CategoryListPresenter';
 
+const { changeCategory, setCategoriesQueryFromUrl } = filterActions;
+const { selectFilterCategories } = filterSelectors;
+
 class CategoryListController extends Component {
   addCategoriesQueryToUrl() {
     const url = new URL(window.location.href);
@@ -55,12 +58,12 @@ class CategoryListController extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: filterSelectors.getFilterCategories(state)
+  categories: selectFilterCategories(state)
 });
 
 const mapDispatchToProps = {
-  changeCategory: filterActions.changeCategory,
-  setCategoriesQueryFromUrl: filterActions.setCategoriesQueryFromUrl
+  changeCategory,
+  setCategoriesQueryFromUrl
 };
 
 export default connect(

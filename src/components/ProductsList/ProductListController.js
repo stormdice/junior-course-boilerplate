@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { productItems } from '../../products.json';
-import { filterActions } from '../../store/filter';
+import { filterActions, filterSelectors } from '../../store/filter';
 import ProductListPresenter from './ProductsListPresenter';
 import { minBy, maxBy } from 'csssr-school-utils';
+
+const { getProducts, setMinProductPrice, setMaxProductPrice } = filterActions;
+const { selectFilter } = filterSelectors;
 
 const isProductPriceInRange = (product, min, max) =>
   max === ''
@@ -53,38 +56,16 @@ class ProductsController extends Component {
   }
 }
 
-const mapStateToProps = ({
-  filter: {
-    products,
-    setMinProductPrice,
-    setMaxProductPrice,
-    min,
-    max,
-    discount,
-    categories
-  }
-}) => {
-  return {
-    products,
-    setMinProductPrice,
-    setMaxProductPrice,
-    min,
-    max,
-    discount,
-    categories
-  };
-};
+const mapStateToProps = selectFilter;
 
 const mapDispatchToProps = dispatch => {
   const minPrice = minBy(product => product.price, productItems).price;
   const maxPrice = maxBy(product => product.price, productItems).price;
 
   return {
-    getProducts: () => dispatch(filterActions.getProducts(productItems)),
-    setMinProductPrice: () =>
-      dispatch(filterActions.setMinProductPrice(minPrice)),
-    setMaxProductPrice: () =>
-      dispatch(filterActions.setMaxProductPrice(maxPrice))
+    getProducts: () => dispatch(getProducts(productItems)),
+    setMinProductPrice: () => dispatch(setMinProductPrice(minPrice)),
+    setMaxProductPrice: () => dispatch(setMaxProductPrice(maxPrice))
   };
 };
 

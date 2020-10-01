@@ -1,6 +1,7 @@
 import reducer from './reducers';
 import * as routerActions from './actions';
+import * as routerSelectors from './selectors';
 
-export { routerActions };
+export { routerActions, routerSelectors };
 
 export default reducer;

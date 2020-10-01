@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
 import InputNumber from '../InputNumber';
-import { filterActions } from '../../store/filter';
+import { filterActions, filterSelectors } from '../../store/filter';
+
+const { setInputValue } = filterActions;
+const { selectFilterMaxValue, selectFilterMaxProductPrice } = filterSelectors;
 
 const InputMax = ({ placeholder, value, changeHandler }) => (
   <InputNumber
@@ -12,18 +15,13 @@ const InputMax = ({ placeholder, value, changeHandler }) => (
   />
 );
 
-const mapStateToProps = ({ filter: { max, maxProductPrice } }) => {
-  return {
-    value: max,
-    placeholder: maxProductPrice
-  };
-};
+const mapStateToProps = state => ({
+  value: selectFilterMaxValue(state),
+  placeholder: selectFilterMaxProductPrice(state)
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeHandler: fieldValue =>
-      dispatch(filterActions.setInputValue('max', fieldValue))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  changeHandler: fieldValue => dispatch(setInputValue('max', fieldValue))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(InputMax);

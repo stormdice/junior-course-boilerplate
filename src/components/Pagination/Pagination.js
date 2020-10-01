@@ -5,15 +5,17 @@ import PaginationLink from '../PaginationLink';
 const Pagination = () => (
   <List>
     <ListItem>
-      <PaginationLink active={false}>назад</PaginationLink>
+      <PaginationLink active={false} href="back">
+        назад
+      </PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={true} href="1">
+      <PaginationLink active={true} href="?pageNum=1">
         1
       </PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={false} href="2">
+      <PaginationLink active={false} href="?pageNum=2">
         2
       </PaginationLink>
     </ListItem>
@@ -21,7 +23,9 @@ const Pagination = () => (
       <PaginationLink active={false}>...</PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={false}>вперед</PaginationLink>
+      <PaginationLink active={false} href="forward">
+        вперед
+      </PaginationLink>
     </ListItem>
   </List>
 );

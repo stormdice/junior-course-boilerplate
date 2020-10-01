@@ -3,9 +3,23 @@ import { connect } from 'react-redux';
 import { routerActions } from '../../store/router';
 import { Link } from './PaginationLink.styled';
 
+const { pushState } = routerActions;
+
 class PaginationLink extends React.Component {
   handleLinkClick = evt => {
     evt.preventDefault();
+    const href = this.props.href;
+
+    if (href === 'back') {
+      window.history.back();
+      return;
+    }
+
+    if (href === 'forward') {
+      window.history.forward();
+      return;
+    }
+
     const url = new URL(window.location.href);
 
     url.searchParams.set('pageNum', this.props.href);
@@ -21,10 +35,8 @@ class PaginationLink extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    pushState: url => dispatch(routerActions.pushState(url))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  pushState: url => dispatch(pushState(url))
+});
 
 export default connect(null, mapDispatchToProps)(PaginationLink);

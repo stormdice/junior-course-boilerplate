@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import DiscountPresenter from './DiscountPresenter';
-import { filterActions } from '../../store/filter';
+import { filterActions, filterSelectors } from '../../store/filter';
+
+const { setInputValue } = filterActions;
+const { selectFilterDiscount } = filterSelectors;
 
 const DiscountController = ({ changeHandler, discount }) => (
   <DiscountPresenter
@@ -12,13 +15,12 @@ const DiscountController = ({ changeHandler, discount }) => (
   />
 );
 
-const mapStateToProps = ({ filter: { discount } }) => ({ discount });
+const mapStateToProps = state => ({
+  discount: selectFilterDiscount(state)
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
-    changeHandler: fieldValue =>
-      dispatch(filterActions.setInputValue('discount', fieldValue))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  changeHandler: fieldValue => dispatch(setInputValue('discount', fieldValue))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(DiscountController);

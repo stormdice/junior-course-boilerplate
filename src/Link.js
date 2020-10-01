@@ -17,10 +17,8 @@ class Link extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    pushState: url => dispatch(pushState(url))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  pushState: url => dispatch(pushState(url))
+});
 
 export default connect(null, mapDispatchToProps)(Link);
