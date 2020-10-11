@@ -8,10 +8,10 @@ const Products = () => (
   <div>
     <AppTitle />
     <ProductsList />
-    <Route path="1">
+    <Route path="page=1">
       <p>товары первой страницы</p>
     </Route>
-    <Route path="2">
+    <Route path="page=2">
       <p>товары второй страницы</p>
     </Route>
     <Pagination />

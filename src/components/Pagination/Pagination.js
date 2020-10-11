@@ -10,13 +10,18 @@ const Pagination = () => (
       </PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={true} href="?pageNum=1">
+      <PaginationLink active={true} href="page=1">
         1
       </PaginationLink>
     </ListItem>
     <ListItem>
-      <PaginationLink active={false} href="?pageNum=2">
+      <PaginationLink active={false} href="page=2">
         2
+      </PaginationLink>
+    </ListItem>
+    <ListItem>
+      <PaginationLink active={false} href="page=3">
+        3
       </PaginationLink>
     </ListItem>
     <ListItem>

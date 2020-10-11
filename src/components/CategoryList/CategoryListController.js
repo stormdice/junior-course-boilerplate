@@ -10,7 +10,12 @@ class CategoryListController extends Component {
   addCategoriesQueryToUrl() {
     const url = new URL(window.location.href);
 
-    url.searchParams.set('categories', this.props.categories);
+    if (this.props.categories.length === 0) {
+      url.searchParams.delete('categories');
+    } else {
+      url.searchParams.set('categories', this.props.categories);
+    }
+
     window.history.pushState({}, 'categories', url);
   }
 
@@ -18,7 +23,9 @@ class CategoryListController extends Component {
     const url = new URL(window.location.href);
     const categories = url.searchParams.get('categories');
 
-    this.props.setCategoriesQueryFromUrl(categories);
+    if (categories) {
+      this.props.setCategoriesQueryFromUrl(categories);
+    }
   };
 
   getChangeHandler = fieldName => isChecked => {

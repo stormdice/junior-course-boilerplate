@@ -9,21 +9,7 @@ class PaginationLink extends React.Component {
   handleLinkClick = evt => {
     evt.preventDefault();
     const href = this.props.href;
-
-    if (href === 'back') {
-      window.history.back();
-      return;
-    }
-
-    if (href === 'forward') {
-      window.history.forward();
-      return;
-    }
-
-    const url = new URL(window.location.href);
-
-    url.searchParams.set('pageNum', this.props.href);
-    this.props.pushState(url);
+    this.props.pushState(href);
   };
 
   render() {

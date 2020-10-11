@@ -1,1 +1,1 @@
-export const selectPageNum = state => state.router.pageNum;
+export const selectRoute = state => state.router.route;

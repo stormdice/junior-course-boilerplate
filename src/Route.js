@@ -2,11 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { routerSelectors } from './store/router';
 
-const { selectPageNum } = routerSelectors;
-
+const { selectRoute } = routerSelectors;
 class Route extends React.Component {
   render() {
-    const path = this.props.pageNum;
+    const path = this.props.route;
 
     if (path !== this.props.path) {
       return false;
@@ -17,7 +16,7 @@ class Route extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  pageNum: selectPageNum(state)
+  route: selectRoute(state)
 });
 
 export default connect(mapStateToProps)(Route);
